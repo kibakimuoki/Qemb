@@ -1,80 +1,104 @@
-/* qemb.css - Futuristic theme for Qemb */
+/* qemb.css — Light, Futuristic, Sleek Theme */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+:root {
+  --primary-color: #4b6cb7;
+  --secondary-color: #6dd5ed;
+  --accent-color: #56cc9d;
+  --bg-light: #f4f7ff;
+  --text-dark: #222;
+  --font-main: 'Orbitron', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #0d1117;
-  color: #e6edf3;
+  background: var(--bg-light);
+  color: var(--text-dark);
+  font-family: var(--font-main);
   line-height: 1.6;
-  background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
-}
-
-header {
-  background-color: #161b22;
   padding: 20px;
-  text-align: center;
-  border-bottom: 1px solid #30363d;
 }
 
-header h1 {
-  font-size: 2.5em;
-  color: #58a6ff;
-  text-shadow: 0 0 10px #58a6ff;
+h1, h2, h3 {
+  color: var(--primary-color);
+  text-shadow: 0 1px 2px rgba(75, 108, 183, 0.3);
+}
+
+a {
+  color: var(--secondary-color);
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+a:hover {
+  color: var(--accent-color);
+  text-shadow: 0 0 6px var(--accent-color);
+}
+
+nav {
+  background: #ffffff;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--accent-color);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 nav a {
-  margin: 0 15px;
-  text-decoration: none;
-  color: #8b949e;
-  transition: color 0.3s;
-}
-
-nav a:hover {
-  color: #58a6ff;
+  margin-left: 20px;
+  font-weight: bold;
 }
 
 section {
-  padding: 40px;
-  max-width: 1000px;
-  margin: auto;
+  padding: 40px 20px;
+  border-bottom: 1px solid #ddd;
+  background-color: #ffffff;
+  border-radius: 8px;
+  margin-bottom: 20px;
 }
 
-img {
-  width: 100%;
-  border-radius: 8px;
-  margin-top: 10px;
-  box-shadow: 0 0 10px rgba(88, 166, 255, 0.3);
+button {
+  background: var(--primary-color);
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+  border-radius: 5px;
+}
+
+button:hover {
+  background: var(--secondary-color);
+  color: #000;
+  box-shadow: 0 0 10px var(--accent-color);
 }
 
 footer {
-  background-color: #161b22;
   text-align: center;
   padding: 20px;
-  font-size: 0.9em;
-  color: #8b949e;
-  border-top: 1px solid #30363d;
-  margin-top: 60px;
+  background: #ffffff;
+  border-top: 2px solid var(--primary-color);
+  color: #444;
+  margin-top: 40px;
 }
 
-button, .btn {
-  background-color: #58a6ff;
-  color: #0d1117;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  margin-top: 15px;
-  box-shadow: 0 0 10px #58a6ff;
-  transition: background-color 0.3s;
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(75, 108, 183, 0.15);
 }
 
-button:hover, .btn:hover {
-  background-color: #1f6feb;
-}
-
-a.btn {
-  display: inline-block;
-  text-decoration: none;
-  color: #0d1117;
+.grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
