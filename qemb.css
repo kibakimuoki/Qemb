@@ -1,0 +1,80 @@
+/* qemb.css - Futuristic theme for Qemb */
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #0d1117;
+  color: #e6edf3;
+  line-height: 1.6;
+  background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
+}
+
+header {
+  background-color: #161b22;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid #30363d;
+}
+
+header h1 {
+  font-size: 2.5em;
+  color: #58a6ff;
+  text-shadow: 0 0 10px #58a6ff;
+}
+
+nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #8b949e;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #58a6ff;
+}
+
+section {
+  padding: 40px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+img {
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 10px;
+  box-shadow: 0 0 10px rgba(88, 166, 255, 0.3);
+}
+
+footer {
+  background-color: #161b22;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9em;
+  color: #8b949e;
+  border-top: 1px solid #30363d;
+  margin-top: 60px;
+}
+
+button, .btn {
+  background-color: #58a6ff;
+  color: #0d1117;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 15px;
+  box-shadow: 0 0 10px #58a6ff;
+  transition: background-color 0.3s;
+}
+
+button:hover, .btn:hover {
+  background-color: #1f6feb;
+}
+
+a.btn {
+  display: inline-block;
+  text-decoration: none;
+  color: #0d1117;
+}
