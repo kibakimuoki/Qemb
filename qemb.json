@@ -1,1 +1,18 @@
+[
+  {
+    "title": "AI for Health",
+    "description": "Using AI to detect breast and lung cancer early.",
+    "image": "assets/ai-health.jpg"
+  },
+  {
+    "title": "Quantum Climate Models",
+    "description": "Modeling climate futures using quantum computing.",
+    "image": "assets/quantum-climate.jpg"
+  },
+  {
+    "title": "AgriSense AI",
+    "description": "Helping smallholder farmers with AI-powered crop insights.",
+    "image": "assets/agrisense.jpg"
+  }
+]
 
