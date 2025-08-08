@@ -1,10 +1,19 @@
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(120deg, #0a0a0f, #111122);
+    background: linear-gradient(120deg, #1a1a3d, #2a2a5a, #1a3d5c);
+    background-size: 400% 400%;
+    animation: gradientShift 12s ease infinite;
     color: #fff;
     line-height: 1.6;
 }
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
 
 /* Navbar */
 #navbar {
