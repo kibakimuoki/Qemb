@@ -18,32 +18,51 @@ body {
 /* Navbar container fixed at top, full width */
 /* Navbar container fixed at top, full width with white background */
 /* Replace all #navbar with .navbar */
-.navbar {
+#navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background: rgba(15, 15, 25, 0.85);
-  backdrop-filter: blur(12px);
+  background: #fff; /* white background */
   padding: 0.75rem 0;
   z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
   display: flex;
   justify-content: center;
 }
 
-.navbar nav ul {
+#navbar .nav-container {
+  width: 100%;
+  max-width: 1200px;
   display: flex;
-  gap: 2rem;
-  background: rgba(0, 0, 0, 0.6);
-  padding: 0.5rem 2rem;
-  border-radius: 12px;
-  margin: 0;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+}
+
+/* Logo */
+#navbar .logo a {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #000;  /* Keep logo text black for contrast */
+  text-decoration: none;
+}
+
+/* Nav list */
+#navbar nav ul {
+  display: flex;
   list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 1.5rem;
   align-items: center;
 }
 
-.navbar nav ul li a {
-  color: white;
+/* Nav links - white text on dark background blocks */
+#navbar nav ul li a {
+  background-color: #003366; /* dark blue background */
+  color: #fff; /* white text */
   text-decoration: none;
   font-family: 'Orbitron', sans-serif;
   font-weight: 600;
@@ -54,10 +73,11 @@ body {
   box-shadow: 0 0 6px rgba(0, 240, 255, 0.4);
 }
 
-.navbar nav ul li a:hover,
-.navbar nav ul li a.active {
-  background-color: #00f0ff;
-  color: #000;
+/* Hover and active states */
+#navbar nav ul li a:hover,
+#navbar nav ul li a.active {
+  background-color: #00f0ff; /* bright cyan */
+  color: #000; /* black text on hover for contrast */
   box-shadow: 0 0 12px #00f0ff;
 }
 
