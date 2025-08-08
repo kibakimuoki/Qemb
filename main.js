@@ -21,78 +21,50 @@ document.addEventListener("DOMContentLoaded", () => {
     typeWriter();
 
     // Dynamic Content Switching for Navigation and Buttons
-
     const navLinks = document.querySelectorAll(".nav-link");
     const sectorButtons = document.querySelectorAll(".sector-card");
     const heroButtons = document.querySelectorAll(".hero-buttons button");
-
     const sections = document.querySelectorAll(".content-section");
 
     function showSection(sectionId) {
-        // Hide all sections
+        // Hide all sections, show target section
         sections.forEach(sec => {
-            if (sec.id === sectionId) {
-                sec.style.display = "block";
-            } else {
-                sec.style.display = "none";
-            }
+            sec.style.display = (sec.id === sectionId) ? "block" : "none";
         });
 
         // Update active nav link
         navLinks.forEach(link => {
-            if (link.dataset.section === sectionId) {
-                link.classList.add("active");
-            } else {
-                link.classList.remove("active");
-            }
+            link.classList.toggle("active", link.dataset.section === sectionId);
         });
     }
 
-    // Nav link click event
-    navLinks.forEach(link => {
-        link.addEventListener("click", e => {
-            e.preventDefault();
-            const section = link.dataset.section;
-            showSection(section);
-            // Scroll to top for better UX
-            window.scrollTo({ top: 0, behavior: "smooth" });
-        });
-    });
-
-    // Sector card button click event (similar behavior)
-    sectorButtons.forEach(btn => {
-        btn.addEventListener("click", e => {
-            const section = btn.dataset.section;
-            showSection(section);
-            // Update nav active state
-            navLinks.forEach(link => {
-                if (link.dataset.section === section) {
-                    link.classList.add("active");
-                } else {
-                    link.classList.remove("active");
-                }
+    // Handle navigation and buttons click
+    function setupClickHandlers(elements) {
+        elements.forEach(el => {
+            el.addEventListener("click", e => {
+                e.preventDefault();
+                const section = el.dataset.section;
+                if (!section) return;
+                showSection(section);
+                history.pushState({section}, "", `#${section}`);
+                window.scrollTo({ top: 0, behavior: "smooth" });
             });
-            window.scrollTo({ top: 0, behavior: "smooth" });
         });
+    }
+
+    setupClickHandlers(navLinks);
+    setupClickHandlers(sectorButtons);
+    setupClickHandlers(heroButtons);
+
+    // Handle browser back/forward buttons
+    window.addEventListener("popstate", event => {
+        const section = (event.state && event.state.section) || "home";
+        showSection(section);
     });
 
-    // Hero buttons (Explore Our Work, Contact Us)
-    heroButtons.forEach(btn => {
-        btn.addEventListener("click", e => {
-            const section = btn.dataset.section;
-            showSection(section);
-            // Update nav active state
-            navLinks.forEach(link => {
-                if (link.dataset.section === section) {
-                    link.classList.add("active");
-                } else {
-                    link.classList.remove("active");
-                }
-            });
-            window.scrollTo({ top: 0, behavior: "smooth" });
-        });
-    });
-
-    // Initial display setup - show home section
-    showSection("home");
+    // On page load, show section based on URL hash or default to home
+    const initialSection = window.location.hash.replace("#", "") || "home";
+    showSection(initialSection);
+    history.replaceState({section: initialSection}, "", window.location.href);
 });
+
