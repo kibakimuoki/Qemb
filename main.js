@@ -65,6 +65,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // On page load, show section based on URL hash or default to home
     const initialSection = window.location.hash.replace("#", "") || "home";
     showSection(initialSection);
-    history.replaceState({section: initialSection}, "", window.location.href);
+   
+    history.replaceState({section: initialSection}, "", `#${initialSection}`);
+
 });
 
