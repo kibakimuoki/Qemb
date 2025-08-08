@@ -10,13 +10,13 @@
 </head>
 <body>
 
-    <!-- Floating Navbar -->
+    <!-- Navigation -->
     <header id="navbar"></header>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1 class="typewriter"></h1>
+            <h1 class="typewriter">Shaping Tomorrow with AI & Quantum</h1>
             <p>Innovating across AI, Quantum Technologies, Climate, Agriculture, and more.</p>
             <div class="hero-buttons">
                 <a href="#about" class="btn-primary">Explore Our Work</a>
@@ -30,7 +30,9 @@
         <div class="about-container">
             <div class="about-text glass">
                 <h2>About Qemb</h2>
-                <p>Qemb is a visionary tech company leveraging AI, quantum computing, and futuristic innovations to solve global challenges in health, climate, agriculture, and beyond.</p>
+                <p>
+                    Qemb is a visionary tech company leveraging AI, quantum computing, and futuristic innovations to solve global challenges in health, climate, agriculture, and beyond.
+                </p>
                 <div class="stats">
                     <div class="stat">
                         <h3>12+</h3>
@@ -55,17 +57,19 @@
     <!-- Featured Initiatives -->
     <section id="initiatives" class="initiatives">
         <h2>Featured Initiatives</h2>
-        <div id="projects-container" class="projects-grid"></div>
+        <div id="projects-container" class="projects-grid">
+            <!-- Loaded dynamically from main.js -->
+        </div>
     </section>
 
-    <!-- Sectors We Innovate In -->
+    <!-- Sectors -->
     <section class="sectors">
         <h2>Sectors We Innovate In</h2>
         <div class="sector-grid">
-            <div class="sector-card glass">AI in Health</div>
-            <div class="sector-card glass">Quantum for Climate Change</div>
-            <div class="sector-card glass">Futuristic Agriculture</div>
-            <div class="sector-card glass">Research & Funding Opportunities</div>
+            <a href="health.html" class="sector-card glass">AI in Health</a>
+            <a href="climate.html" class="sector-card glass">Quantum for Climate Change</a>
+            <a href="agriculture.html" class="sector-card glass">Futuristic Agriculture</a>
+            <a href="research.html" class="sector-card glass">Research & Funding</a>
         </div>
     </section>
 
@@ -82,6 +86,7 @@
     <!-- Footer -->
     <footer id="footer"></footer>
 
+    <!-- Scripts -->
     <script src="main.js"></script>
 </body>
 </html>
