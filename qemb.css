@@ -19,26 +19,44 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(15, 15, 25, 0.7);
-    backdrop-filter: blur(10px);
+    background: rgba(15, 15, 25, 0.8);
+    backdrop-filter: blur(12px);
     display: flex;
-    justify-content: space-around;
-    padding: 1rem;
+    justify-content: center;
+    padding: 1rem 0;
     z-index: 1000;
-    border-bottom: 1px solid rgba(0, 240, 255, 0.3);
+    border-bottom: 2px solid #00f0ff;
 }
 
-#navbar a {
-    color: #00f0ff; /* brighter text for better contrast */
+/* Nav container: ul list */
+#navbar nav ul {
+    display: flex;
+    gap: 2rem;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 0.5rem 1.5rem;
+    border-radius: 12px;
+    list-style: none;
+    margin: 0;
+}
+
+/* Nav link styles */
+#navbar nav ul li a {
+    color: #fff; /* white text */
     text-decoration: none;
     font-family: 'Orbitron', sans-serif;
     font-weight: 600;
-    transition: color 0.3s ease;
-    text-shadow: 0 0 4px rgba(0, 240, 255, 0.5);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: inline-block;
+    box-shadow: 0 0 6px rgba(0, 240, 255, 0.4);
 }
 
-#navbar a:hover {
-    color: #ffffff;
+#navbar nav ul li a:hover,
+#navbar nav ul li a.active {
+    background-color: #00f0ff; /* bright cyan background on hover or active */
+    color: #000; /* black text for contrast */
+    box-shadow: 0 0 12px #00f0ff;
 }
 
 /* Hero */
@@ -137,3 +155,4 @@ footer {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     color: #ccc;
 }
+
