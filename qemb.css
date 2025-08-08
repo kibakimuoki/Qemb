@@ -15,33 +15,37 @@ body {
 }
 
 /* Navbar */
+/* Navbar container fixed at top, full width */
 #navbar {
     position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
-    background: rgba(15, 15, 25, 0.8);
+    background: rgba(15, 15, 25, 0.85); /* slightly darker for contrast */
     backdrop-filter: blur(12px);
+    padding: 0.75rem 0; /* vertical padding */
+    z-index: 1000;
+
+    /* Flex container to center nav horizontally */
     display: flex;
     justify-content: center;
-    padding: 1rem 0;
-    z-index: 1000;
-    border-bottom: 2px solid #00f0ff;
 }
 
-/* Nav container: ul list */
+/* Nav <ul> as horizontal flex list with background */
 #navbar nav ul {
     display: flex;
-    gap: 2rem;
-    background: rgba(0, 0, 0, 0.5);
-    padding: 0.5rem 1.5rem;
+    gap: 2rem; /* spacing between links */
+    background: rgba(0, 0, 0, 0.6); /* semi-transparent black encasing */
+    padding: 0.5rem 2rem; /* vertical and horizontal padding */
     border-radius: 12px;
-    list-style: none;
     margin: 0;
+    list-style: none;
+    align-items: center;
 }
 
-/* Nav link styles */
+/* Nav links white and with padding */
 #navbar nav ul li a {
-    color: #fff; /* white text */
+    color: white;  /* white text */
     text-decoration: none;
     font-family: 'Orbitron', sans-serif;
     font-weight: 600;
@@ -52,12 +56,14 @@ body {
     box-shadow: 0 0 6px rgba(0, 240, 255, 0.4);
 }
 
+/* Hover and active link states */
 #navbar nav ul li a:hover,
 #navbar nav ul li a.active {
-    background-color: #00f0ff; /* bright cyan background on hover or active */
-    color: #000; /* black text for contrast */
+    background-color: #00f0ff;
+    color: #000;
     box-shadow: 0 0 12px #00f0ff;
 }
+
 
 /* Hero */
 .hero {
