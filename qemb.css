@@ -17,52 +17,48 @@ body {
 /* Navbar */
 /* Navbar container fixed at top, full width */
 /* Navbar container fixed at top, full width with white background */
-#navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: #fff; /* solid white */
-    padding: 0.75rem 0;
-    z-index: 1000;
-
-    display: flex;
-    justify-content: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+/* Replace all #navbar with .navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(15, 15, 25, 0.85);
+  backdrop-filter: blur(12px);
+  padding: 0.75rem 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
 }
 
-/* Nav <ul> as horizontal flex list with white background and rounded corners */
-#navbar nav ul {
-    display: flex;
-    gap: 2rem;
-    background: #fff; /* white background */
-    padding: 0.5rem 2rem;
-    border-radius: 12px;
-    margin: 0;
-    list-style: none;
-    align-items: center;
-    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+.navbar nav ul {
+  display: flex;
+  gap: 2rem;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 0.5rem 2rem;
+  border-radius: 12px;
+  margin: 0;
+  list-style: none;
+  align-items: center;
 }
 
-/* Nav links - black text on white background */
-#navbar nav ul li a {
-    color: #000;  /* black text */
-    text-decoration: none;
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 600;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    display: inline-block;
-    box-shadow: none; /* remove glow effect */
+.navbar nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  display: inline-block;
+  box-shadow: 0 0 6px rgba(0, 240, 255, 0.4);
 }
 
-/* Hover and active link states */
-#navbar nav ul li a:hover,
-#navbar nav ul li a.active {
-    background-color: #00f0ff;
-    color: #000;
-    box-shadow: 0 0 12px #00f0ff;
+.navbar nav ul li a:hover,
+.navbar nav ul li a.active {
+  background-color: #00f0ff;
+  color: #000;
+  box-shadow: 0 0 12px #00f0ff;
 }
 
 
