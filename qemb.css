@@ -16,36 +16,37 @@ body {
 
 /* Navbar */
 /* Navbar container fixed at top, full width */
+/* Navbar container fixed at top, full width with white background */
 #navbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background: rgba(15, 15, 25, 0.85); /* slightly darker for contrast */
-    backdrop-filter: blur(12px);
-    padding: 0.75rem 0; /* vertical padding */
+    background: #fff; /* solid white */
+    padding: 0.75rem 0;
     z-index: 1000;
 
-    /* Flex container to center nav horizontally */
     display: flex;
     justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-/* Nav <ul> as horizontal flex list with background */
+/* Nav <ul> as horizontal flex list with white background and rounded corners */
 #navbar nav ul {
     display: flex;
-    gap: 2rem; /* spacing between links */
-    background: rgba(0, 0, 0, 0.6); /* semi-transparent black encasing */
-    padding: 0.5rem 2rem; /* vertical and horizontal padding */
+    gap: 2rem;
+    background: #fff; /* white background */
+    padding: 0.5rem 2rem;
     border-radius: 12px;
     margin: 0;
     list-style: none;
     align-items: center;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
 }
 
-/* Nav links white and with padding */
+/* Nav links - black text on white background */
 #navbar nav ul li a {
-    color: white;  /* white text */
+    color: #000;  /* black text */
     text-decoration: none;
     font-family: 'Orbitron', sans-serif;
     font-weight: 600;
@@ -53,7 +54,7 @@ body {
     border-radius: 8px;
     transition: background-color 0.3s ease, color 0.3s ease;
     display: inline-block;
-    box-shadow: 0 0 6px rgba(0, 240, 255, 0.4);
+    box-shadow: none; /* remove glow effect */
 }
 
 /* Hover and active link states */
@@ -63,6 +64,7 @@ body {
     color: #000;
     box-shadow: 0 0 12px #00f0ff;
 }
+
 
 /* Hero */
 .hero {
