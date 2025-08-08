@@ -11,7 +11,24 @@
 <body>
 
     <!-- Navigation -->
-    <header id="navbar"></header>
+    <header class="navbar glass">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">Qemb</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="health.html">Health</a></li>
+                    <li><a href="climate.html">Climate</a></li>
+                    <li><a href="agriculture.html">Agriculture</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="funding.html">Funding</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -58,7 +75,7 @@
     <section id="initiatives" class="initiatives">
         <h2>Featured Initiatives</h2>
         <div id="projects-container" class="projects-grid">
-            <!-- Loaded dynamically from main.js -->
+            <p class="loading-text">Loading projects...</p>
         </div>
     </section>
 
@@ -84,7 +101,10 @@
     </section>
 
     <!-- Footer -->
-    <footer id="footer"></footer>
+    <footer class="footer glass">
+        <p>&copy; 2025 Qemb. All Rights Reserved.</p>
+        <p>Innovating for Health, Climate, Agriculture, and Beyond.</p>
+    </footer>
 
     <!-- Scripts -->
     <script src="main.js"></script>
