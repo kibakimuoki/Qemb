@@ -1,54 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Qemb – Tech for the Future</title>
-  <meta name="description" content="Qemb is pioneering futuristic solutions using AI, Quantum, and advanced technologies to solve global challenges in health, climate, and agriculture." />
-  <meta name="keywords" content="Qemb, AI, Quantum, futuristic tech, health, climate, agriculture" />
-  <link rel="stylesheet" href="qemb.css" />
-  <link rel="icon" type="image/png" href="favicon.png" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Qemb – Leading the Future with AI, Quantum & Innovation">
+    <title>Qemb | Leading the Future</title>
+    <link rel="stylesheet" href="qemb.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <img src="logo.jpg" alt="Qemb Logo" class="logo" />
-    <h1>Welcome to Qemb</h1>
-    <p>Leading the Future with AI, Quantum & Innovation</p>
-  </header>
 
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="health.html">Health</a></li>
-      <li><a href="climate.html">Climate</a></li>
-      <li><a href="agriculture.html">Agriculture</a></li>
-      <li><a href="research.html">Research</a></li>
-      <li><a href="funding.html">Funding</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
+    <!-- Floating Navbar -->
+    <header id="navbar"></header>
 
-  <main>
-    <section class="founder">
-      <img src="kibakiImage.jpg" alt="Kibaki Muoki" class="profile-img" />
-      <h2>Our Visionary Leader</h2>
-      <p>Meet Kibaki Muoki, the visionary founder of Qemb. Driven by a passion to harness futuristic technologies like AI and Quantum Computing, he leads the mission to address humanity’s greatest challenges. With strategic foresight and exceptional leadership prowess, Kibaki is guiding Qemb into becoming one of the most impactful tech companies on the planet.</p>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="typewriter"></h1>
+            <p>Innovating across AI, Quantum Technologies, Climate, Agriculture, and more.</p>
+            <div class="hero-buttons">
+                <a href="#about" class="btn-primary">Explore Our Work</a>
+                <a href="contact.html" class="btn-secondary">Contact Us</a>
+            </div>
+        </div>
     </section>
 
-    <section>
-      <h2>Why Qemb?</h2>
-      <ul>
-        <li>🌍 Tackling global issues in health, climate, and agriculture</li>
-        <li>🧠 Pioneering AI-based research & diagnostics</li>
-        <li>⚛️ Exploring Quantum solutions for real-world problems</li>
-        <li>💼 Open to partnerships, investors & funding collaborations</li>
-      </ul>
+    <!-- About Qemb -->
+    <section id="about" class="about">
+        <div class="about-container">
+            <div class="about-text glass">
+                <h2>About Qemb</h2>
+                <p>Qemb is a visionary tech company leveraging AI, quantum computing, and futuristic innovations to solve global challenges in health, climate, agriculture, and beyond.</p>
+                <div class="stats">
+                    <div class="stat">
+                        <h3>12+</h3>
+                        <p>Projects</p>
+                    </div>
+                    <div class="stat">
+                        <h3>8+</h3>
+                        <p>Partners</p>
+                    </div>
+                    <div class="stat">
+                        <h3>5</h3>
+                        <p>Countries Impacted</p>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image">
+                <img src="images/futuristic-lab.jpg" alt="Futuristic Lab">
+            </div>
+        </div>
     </section>
-  </main>
 
-  <footer>
-    <p>Contact us: <a href="mailto:muokidan35@gmail.com">muokidan35@gmail.com</a> | +254114924399</p>
-    <p>© 2025 Qemb. All rights reserved.</p>
-  </footer>
+    <!-- Featured Initiatives -->
+    <section id="initiatives" class="initiatives">
+        <h2>Featured Initiatives</h2>
+        <div id="projects-container" class="projects-grid"></div>
+    </section>
+
+    <!-- Sectors We Innovate In -->
+    <section class="sectors">
+        <h2>Sectors We Innovate In</h2>
+        <div class="sector-grid">
+            <div class="sector-card glass">AI in Health</div>
+            <div class="sector-card glass">Quantum for Climate Change</div>
+            <div class="sector-card glass">Futuristic Agriculture</div>
+            <div class="sector-card glass">Research & Funding Opportunities</div>
+        </div>
+    </section>
+
+    <!-- Partners -->
+    <section class="partners">
+        <h2>Partners & Collaborations</h2>
+        <div class="partners-carousel">
+            <img src="images/partner1.png" alt="Partner 1">
+            <img src="images/partner2.png" alt="Partner 2">
+            <img src="images/partner3.png" alt="Partner 3">
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer"></footer>
+
+    <script src="main.js"></script>
 </body>
 </html>
