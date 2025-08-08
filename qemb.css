@@ -64,7 +64,6 @@ body {
     box-shadow: 0 0 12px #00f0ff;
 }
 
-
 /* Hero */
 .hero {
     height: 100vh;
@@ -161,4 +160,3 @@ footer {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     color: #ccc;
 }
-
