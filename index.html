@@ -1,140 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Qemb – Leading the Future with AI, Quantum & Innovation" />
     <title>Qemb.AI | Leading the Future</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png" />
     <link rel="stylesheet" href="qemb.css" />
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
-    <style>
-      #gradio-app {
-        font-family: 'Poppins', sans-serif;
-        color: #fff;
-      }
-    </style>
 </head>
-<body>
 
-<!-- Navigation -->
-<header id="navbar" class="navbar glass">
+    <body>
+
+    <!-- Navigation -->
+    
+    <header id="navbar" class="navbar glass">
   <div class="nav-container">
     <div class="logo">
       <a href="#" data-section="home">Qemb.AI</a>
     </div>
-    <nav>
-      <ul>
-        <li><a href="#" class="nav-link active" data-section="home">Home</a></li>
-        <li><a href="#" class="nav-link" data-section="health">Health</a></li>
-        <li><a href="#" class="nav-link" data-section="climate">Climate</a></li>
-        <li><a href="#" class="nav-link" data-section="agriculture">Agriculture</a></li>
-        <li><a href="#" class="nav-link" data-section="research">Research</a></li>
-        <li><a href="#" class="nav-link" data-section="funding">Funding</a></li>
-        <li><a href="#" class="nav-link" data-section="contact">Contact</a></li>
-      </ul>
-    </nav>
+      <nav>
+  <ul>
+    <li><a href="#" class="nav-link active" data-section="home">Home</a></li>
+    <li><a href="#" class="nav-link" data-section="health">Health</a></li>
+    <li><a href="#" class="nav-link" data-section="climate">Climate</a></li>
+    <li><a href="#" class="nav-link" data-section="agriculture">Agriculture</a></li>
+    <li><a href="#" class="nav-link" data-section="research">Research</a></li>
+    <li><a href="#" class="nav-link" data-section="funding">Funding</a></li>
+    <li><a href="#" class="nav-link" data-section="contact">Contact</a></li>
+  </ul>
+</nav>
+
+    
+
   </div>
 </header>
 
-<!-- Main Content -->
-<main>
-  <!-- Home Section -->
-  <section id="home" class="content-section active">
-    <section class="hero">
-      <div class="hero-content">
-        <h1 class="typewriter">Shaping Tomorrow with AI & Quantum</h1>
-        <p>Innovating across AI, Quantum Technologies, Climate and Agriculture</p>
-        <div class="hero-buttons">
-          <button class="btn-primary" data-section="explore-work">Explore Our Work</button>
-          <button class="btn-secondary" data-section="contact">Contact Us</button>
+
+    <!-- Content Sections -->
+    <main>
+      <!-- Home Section -->
+      <section id="home" class="content-section active">
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="typewriter">Shaping Tomorrow with AI & Quantum</h1>
+                <p>Innovating across AI, Quantum Technologies, Climate and Agriculture</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" data-section="explore-work">Explore Our Work</button>
+
+                    <button class="btn-secondary" data-section="contact">Contact Us</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about glass fade-in slide-up delay-1">
+  <div class="about-container">
+    <div class="about-image fade-in delay-2">
+        <img src= "Kibaki.png" alt="Kibaki Muoki - Founder & CEO" style="max-width: 300px; height: auto; border-radius: 12px; box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);" />
+    </div>
+
+    <div class="about-text fade-in delay-3">
+      <h2>Meet Our Founder</h2>
+      <h3>Kibaki Muoki</h3>
+      <p>
+        A visionary Machine Learning Engineer and futurist, Kibaki is driven by a singular mission: to end disease through the power of Quantum computing and Artificial Intelligence.
+      </p>
+      <p>
+        Harnessing cutting-edge AI and quantum technologies, he pioneers revolutionary solutions aimed at decoding the complexities of human health and transforming global medicine. His work lights the path toward a disease-free future, where innovation meets humanity’s greatest challenges.
+      </p>
+      <p>
+        Under his leadership, Qemb pushes the boundaries of technology to build a smarter, healthier, and more sustainable tomorrow.
+      </p>
+
+      <hr class="section-divider" />
+
+      <h2>About Qemb</h2>
+      <p>
+        Qemb is a visionary tech company leveraging AI, quantum computing, and futuristic innovations to solve global challenges in health, climate, agriculture, and beyond.
+      </p>
+
+      <div class="stats">
+        <div class="stat">
+          <h3>12+</h3>
+          <p>Projects</p>
+        </div>
+        <div class="stat">
+          <h3>8+</h3>
+          <p>Partners</p>
+        </div>
+        <div class="stat">
+          <h3>5</h3>
+          <p>Countries Impacted</p>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <!-- About Section -->
-    <section id="about" class="about glass fade-in slide-up delay-1">
-      <div class="about-container">
-        <div class="about-image fade-in delay-2">
-          <img src="Kibaki.png" alt="Kibaki Muoki - Founder & CEO" style="max-width:300px; border-radius:12px; box-shadow:0 0 15px rgba(0,240,255,0.4);" />
-        </div>
-        <div class="about-text fade-in delay-3">
-          <h2>Meet Our Founder</h2>
-          <h3>Kibaki Muoki</h3>
-          <p>A visionary Machine Learning Engineer and futurist, Kibaki is driven by a singular mission: to end disease through the power of Quantum computing and Artificial Intelligence.</p>
-          <p>Harnessing cutting-edge AI and quantum technologies, he pioneers revolutionary solutions aimed at decoding the complexities of human health and transforming global medicine.</p>
-          <p>Under his leadership, Qemb pushes the boundaries of technology to build a smarter, healthier, and more sustainable tomorrow.</p>
 
-          <hr class="section-divider" />
-
-          <h2>About Qemb</h2>
-          <p>Qemb is a visionary tech company leveraging AI, quantum computing, and futuristic innovations to solve global challenges in health, climate, agriculture, and beyond.</p>
-
-          <div class="stats">
-            <div class="stat">
-              <h3>12+</h3>
-              <p>Projects</p>
+        <section class="sectors">
+            <h2>Sectors We Innovate In</h2>
+            <div class="sector-grid">
+                <button class="sector-card glass" data-section="health">AI in Health</button>
+                <button class="sector-card glass" data-section="climate">Quantum for Climate Change</button>
+                <button class="sector-card glass" data-section="agriculture">Futuristic Agriculture</button>
+                <button class="sector-card glass" data-section="research">Research & Funding</button>
             </div>
-            <div class="stat">
-              <h3>8+</h3>
-              <p>Partners</p>
-            </div>
-            <div class="stat">
-              <h3>5</h3>
-              <p>Countries Impacted</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+        </section>
 
-    <!-- Sectors -->
-    <section class="sectors">
-      <h2>Sectors We Innovate In</h2>
-      <div class="sector-grid">
-        <button class="sector-card glass" data-section="health">AI in Health</button>
-        <button class="sector-card glass" data-section="climate">Quantum for Climate Change</button>
-        <button class="sector-card glass" data-section="agriculture">Futuristic Agriculture</button>
-        <button class="sector-card glass" data-section="research">Research & Funding</button>
-      </div>
-    </section>
+        <section class="partners">
+            <h2>Partners & Collaborations</h2>
+            <div class="partners-carousel">
+                <img src="images/partner1.png" alt="Partner 1" />
+                <img src="images/partner2.png" alt="Partner 2" />
+                <img src="images/partner3.png" alt="Partner 3" />
+            </div>
+        </section>
+      </section>
 
-    <!-- Partners -->
-    <section class="partners">
-      <h2>Partners & Collaborations</h2>
-      <div class="partners-carousel">
-        <img src="images/partner1.png" alt="Partner 1" />
-        <img src="images/partner2.png" alt="Partner 2" />
-        <img src="images/partner3.png" alt="Partner 3" />
-      </div>
-    </section>
+      <!-- Other Sections: Initially Hidden -->
+     <section id="health" class="content-section" style="display:none;">
+  <header class="fade-in slide-down">
+    <h1>Health Innovation at Qemb</h1>
+    <p class="fade-in-delay">Harnessing AI and Quantum Technology to Shape a Disease-Free Future</p>
+  </header>
+
+  <!-- QPT-1 PROJECT -->
+  <section class="fade-in fade-in-delay-1 slide-left">
+    <h2>Introducing QPT-1 – Our First Health Revolution</h2>
+    <p>
+      At Qemb.AI, we are aiming towards creating a precise and accurate digitial twin of human for each individual. Our health journey begins with <strong>QPT-1</strong> — an advanced AI model for early breast cancer detection.
+      QPT-1 is an intelligent, self-learning diagnostic system designed for precision and accuracy.
+      By integrating it directly with mammography systems, QPT-1 continually improves its detection capabilities over time, offering clinicians real-time, highly reliable results.
+    </p>
+    <p>
+      This groundbreaking system has the potential to detect anomalies at their earliest stages, giving patients the best possible chance for successful treatment.
+    </p>
+    <img src="Breast Cancer Detection.jpeg" alt="Breast cancer diagnosis AI model" class="fade-in fade-in-delay-2" />
+    <img src="Health Care Innovation.jpeg" alt="Innovation with AI" class="fade-in fade-in-delay-2" />
   </section>
 
-  <!-- Health Section -->
-  <section id="health" class="content-section" style="display:none;">
-    <header class="fade-in slide-down">
-      <h1>Health Innovation at Qemb</h1>
-      <p class="fade-in-delay">Harnessing AI and Quantum Technology to Shape a Disease-Free Future</p>
-    </header>
-
-    <section class="fade-in fade-in-delay-1 slide-left">
-      <h2>Introducing QPT-1 – Our First Health Revolution</h2>
-      <p>At Qemb.AI, we aim to create a precise digital twin of humans. Our health journey begins with <strong>QPT-1</strong> — an advanced AI model for early breast cancer detection.</p>
-      <img src="Breast Cancer Detection.jpeg" alt="Breast cancer diagnosis AI model" />
-    </section>
-
-    <section class="fade-in fade-in-delay-3 slide-left">
-      <h2>The Long-Term Vision: Building the Digital Human Twin</h2>
-      <p>We envision a full digital twin of the human body — allowing doctors to simulate, monitor, and predict disease progression without touching the patient.</p>
-    </section>
-
-    <!-- Gradio App Container -->
-    <div id="gradio-app" style="max-width:800px; margin:20px auto; border:2px solid #007BFF; border-radius:12px; box-shadow:0 4px 20px rgba(0,0,0,0.15); padding:10px;"></div>
+  <!-- DIGITAL TWIN VISION -->
+  <section class="fade-in fade-in-delay-3 slide-left">
+    <h2>The Long-Term Vision: Building the Digital Human Twin</h2>
+    <p>
+      Our ultimate goal extends far beyond single-disease detection.
+      We envision creating a <strong>full digital twin of the human body</strong> — a virtual replica that includes both anatomical and physiological details.
+      This digital twin would allow researchers and doctors to simulate, monitor, and predict the progression of diseases without ever touching the patient.
+      This will involve monitoring the interaction of cells, biomolecules and pathogens, and consequently finding the solution. We are envisioning finding
+      a solution to all diseases, not just treatment but finding a cure.
+    </p>
+    <p>
+      By coupling AI with quantum technology, we aim to run complex, ultra-fast simulations to test treatments,
+      find cures for chronic illnesses, and ultimately, pave the way to a <em>disease-free future</em>.
+    </p>
   </section>
 
-  <!-- Climate, Agriculture, Explore Work, Research, Funding, Contact Sections -->
-  <!-- Keep your previous content here, just make sure there are no duplicate IDs -->
-    <section id="climate" class="content-section" style="display:none;">
+  <!-- HOW AI + QUANTUM WILL CHANGE MEDICINE -->
+  <section class="fade-in fade-in-delay-4 slide-left">
+    <h2>AI + Quantum: The Cure Engine</h2>
+    <p>
+      Quantum computing enables calculations that are practically impossible with traditional systems,
+      while AI brings the power of pattern recognition, learning, and predictive analysis.
+      Together, they form the <strong>Cure Engine</strong> — a platform capable of modeling human biology at unprecedented detail,
+      finding hidden correlations in medical data, and rapidly testing millions of treatment pathways.
+    </p>
+  </section>
+
+  <!-- GLOBAL IMPACT -->
+  <section class="fade-in fade-in-delay-5 slide-left">
+    <h2>Global Health Access</h2>
+    <p>
+      At Qemb, we believe that cutting-edge medical technology should not be a luxury.
+      Our solutions are designed with scalability and accessibility in mind, ensuring that communities
+      in underserved regions can benefit from life-saving diagnostics and treatment innovations.
+    </p>
+      
+      <!-- Gradio App Container -->
+<div id="gradio-app-health" style="max-width: 800px; margin: 20px auto; border: 2px solid #007BFF; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); padding: 10px;">
+  <input type="file" id="input-image-health" />
+  <button id="run-btn-health">Run Detection</button>
+  <img id="output-image-health" style="margin-top: 15px; max-width: 100%;" />
+</div>
+
+  </section>
+
+
+</section>
+
+
+
+
+      <section id="climate" class="content-section" style="display:none;">
   <header class="fade-in slide-down">
     <h1>Climate Solutions at Qemb</h1>
     <p class="fade-in-delay">Harnessing AI and Quantum innovations to fight climate change.</p>
@@ -209,14 +266,14 @@
     <h1>Explore Our Work</h1>
     <p>Experience the cutting-edge AI technology powering Qemb.AI</p>
   </header>
-  <iframe 
-    src="https://huggingface.co/spaces/Kibakimuoki/Qemb.AI-yolo-vit-gradio"
-    width="100%" 
-    height="600" 
-    frameborder="0" 
-    allowfullscreen
-    style="border: 2px solid #0a0; border-radius: 8px;"
-  ></iframe>
+    <!-- Gradio App Container -->
+<div id="gradio-app-work" style="max-width: 800px; margin: 20px auto; border: 2px solid #007BFF; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); padding: 10px;">
+  <input type="file" id="input-image-work" />
+  <button id="run-btn-work">Run Detection</button>
+  <img id="output-image-work" style="margin-top: 15px; max-width: 100%;" />
+</div>
+
+
 </section>
 
 
@@ -307,20 +364,92 @@
   </section>
 </section>
 
-</main>
+    </main>
 
-<!-- Footer -->
-<footer class="footer glass">
-    <p>&copy; 2025 Qemb. All Rights Reserved.</p>
-    <p>Innovating for Health, Climate, Agriculture, and Beyond.</p>
-</footer>
+    <!-- Footer -->
+    <footer class="footer glass">
+        <p>&copy; 2025 Qemb. All Rights Reserved.</p>
+        <p>Innovating for Health, Climate, Agriculture, and Beyond.</p>
+    </footer>
 
-<!-- Scripts -->
-<script src="main.js"></script>
-<script type="module">
-  import { mount } from "https://cdn.jsdelivr.net/npm/gradio@3.41.0/dist/gradio.mjs";
-  mount("#gradio-app", "https://huggingface.co/spaces/Kibakimuoki/Qemb.AI-yolo-vit-gradio");
+    <!-- Gradio App Container inside Health Section -->
+<div id="gradio-app" style="
+      max-width: 800px;
+      margin: 20px auto;
+      border: 2px solid #007BFF;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      padding: 10px;
+">
+  <input type="file" id="input-image" />
+  <button id="run-btn">Run Detection</button>
+  <img id="output-image" style="margin-top: 15px; max-width: 100%;" />
+</div>
+
+<!-- Script to handle API call -->
+<script>
+  // Health Section
+const btnHealth = document.getElementById('run-btn-health');
+const inputHealth = document.getElementById('input-image-health');
+const outputHealth = document.getElementById('output-image-health');
+
+btnHealth.addEventListener('click', async () => {
+  const file = inputHealth.files[0];
+  if (!file) return alert('Please select an image');
+
+  outputHealth.src = '';
+  btnHealth.textContent = 'Processing...';
+
+  const formData = new FormData();
+  formData.append('file', file);
+
+  try {
+    const response = await fetch('https://hf.space/embed/Kibakimuoki/Qemb.AI-yolo-vit-gradio/api/predict/', {
+      method: 'POST',
+      body: formData
+    });
+    const result = await response.json();
+    outputHealth.src = result.data[0];
+  } catch (err) {
+    alert('Error contacting the API. Please try again.');
+    console.error(err);
+  } finally {
+    btnHealth.textContent = 'Run Detection';
+  }
+});
+
+// Explore Work Section
+const btnWork = document.getElementById('run-btn-work');
+const inputWork = document.getElementById('input-image-work');
+const outputWork = document.getElementById('output-image-work');
+
+btnWork.addEventListener('click', async () => {
+  const file = inputWork.files[0];
+  if (!file) return alert('Please select an image');
+
+  outputWork.src = '';
+  btnWork.textContent = 'Processing...';
+
+  const formData = new FormData();
+  formData.append('file', file);
+
+  try {
+    const response = await fetch('https://hf.space/embed/Kibakimuoki/Qemb.AI-yolo-vit-gradio/api/predict/', {
+      method: 'POST',
+      body: formData
+    });
+    const result = await response.json();
+    outputWork.src = result.data[0];
+  } catch (err) {
+    alert('Error contacting the API. Please try again.');
+    console.error(err);
+  } finally {
+    btnWork.textContent = 'Run Detection';
+  }
+});
+
 </script>
 
 </body>
+
 </html>
