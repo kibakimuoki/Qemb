@@ -199,6 +199,13 @@ section {
     transform: scale(1.05);
     box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
 }
+<style>
+  #gradio-app {
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+  }
+</style>
+
 
 /* Footer */
 footer {
