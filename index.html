@@ -29,9 +29,7 @@
     <li><a href="#" class="nav-link" data-section="funding">Funding</a></li>
     <li><a href="#" class="nav-link" data-section="contact">Contact</a></li>
   </ul>
-</nav>
-
-    
+</nav>  
 
   </div>
 </header>
@@ -108,14 +106,6 @@
             </div>
         </section>
 
-        <section class="partners">
-            <h2>Partners & Collaborations</h2>
-            <div class="partners-carousel">
-                <img src="images/partner1.png" alt="Partner 1" />
-                <img src="images/partner2.png" alt="Partner 2" />
-                <img src="images/partner3.png" alt="Partner 3" />
-            </div>
-        </section>
       </section>
 
       <!-- Other Sections: Initially Hidden -->
@@ -177,11 +167,12 @@
     </p>
       
       <!-- Gradio App Container -->
-<div id="gradio-app-health" style="max-width: 800px; margin: 20px auto; border: 2px solid #007BFF; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); padding: 10px;">
+<div id="gradio-app-health" style="max-width:800px; margin:20px auto; border:2px solid #007BFF; border-radius:12px; box-shadow:0 4px 20px rgba(0,0,0,0.15); padding:10px;">
   <input type="file" id="input-image-health" />
   <button id="run-btn-health">Run Detection</button>
-  <img id="output-image-health" style="margin-top: 15px; max-width: 100%;" />
+  <img id="output-image-health" style="margin-top:15px; max-width:100%;" />
 </div>
+
 
   </section>
 
@@ -372,19 +363,6 @@
         <p>Innovating for Health, Climate, Agriculture, and Beyond.</p>
     </footer>
 
-    <!-- Gradio App Container inside Health Section -->
-<div id="gradio-app" style="
-      max-width: 800px;
-      margin: 20px auto;
-      border: 2px solid #007BFF;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-      padding: 10px;
-">
-  <input type="file" id="input-image" />
-  <button id="run-btn">Run Detection</button>
-  <img id="output-image" style="margin-top: 15px; max-width: 100%;" />
-</div>
 
 <!-- Script to handle API call -->
 <script>
@@ -422,6 +400,15 @@ btnHealth.addEventListener('click', async () => {
 const btnWork = document.getElementById('run-btn-work');
 const inputWork = document.getElementById('input-image-work');
 const outputWork = document.getElementById('output-image-work');
+
+document.querySelectorAll('.nav-link, .btn-primary, .btn-secondary').forEach(btn => {
+  btn.addEventListener('click', e => {
+    const sectionId = btn.dataset.section;
+    document.querySelectorAll('.content-section').forEach(s => s.style.display = 'none');
+    document.getElementById(sectionId).style.display = 'block';
+  });
+});
+
 
 btnWork.addEventListener('click', async () => {
   const file = inputWork.files[0];
