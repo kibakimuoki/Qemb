@@ -365,96 +365,19 @@
 
 
 <!-- Script to handle API call -->
-<script>
-// -------- Health Button --------
-const btnHealth = document.getElementById('run-btn-health');
-const inputHealth = document.getElementById('input-image-health');
-const outputHealth = document.getElementById('output-image-health');
+<!-- Health Gradio App -->
+<div id="gradio-app-health" style="max-width:800px; margin:20px auto;">
+  <iframe src="https://huggingface.co/spaces/Kibakimuoki/Qemb.AI-yolo-vit-gradio?__theme=light" 
+          frameborder="0" style="width:100%; height:650px;"></iframe>
+</div>
 
-btnHealth.addEventListener('click', async () => {
-  const file = inputHealth.files[0];
-  if (!file) return alert('Please select an image');
+<!-- Work Gradio App -->
+<div id="gradio-app-work" style="max-width:800px; margin:20px auto;">
+  <iframe src="https://huggingface.co/spaces/Kibakimuoki/Qemb.AI-yolo-vit-gradio?__theme=light" 
+          frameborder="0" style="width:100%; height:650px;"></iframe>
+</div>
 
-  outputHealth.src = '';
-  btnHealth.textContent = 'Processing...';
-
-  const formData = new FormData();
-  formData.append('file', file);
-
-  try {
-  const response = await fetch('/api/predict/health', {
-  method: 'POST',
-  body: formData,
-  });
-
-  if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
-  }
-
-  const result = await response.json();
-  console.log('Health check:', result);
-
-  // if your backend returns an image URL
-  if (result.data && result.data[0]) {
-    outputHealth.src = result.data[0];
-  } else {
-    outputHealth.textContent = '✅ API is healthy';
-  }
-
-} catch (err) {
-  alert('Error contacting the Health API. Please try again.');
-  console.error('Fetch error:', err);
-} finally {
-  btnHealth.textContent = 'Run Detection';
-}
-
-});
-
-
-// -------- Work Button --------
-const btnWork = document.getElementById('run-btn-work');
-const inputWork = document.getElementById('input-image-work');
-const outputWork = document.getElementById('output-image-work');
-
-btnWork.addEventListener('click', async () => {
-  const file = inputWork.files[0];
-  if (!file) return alert('Please select an image');
-
-  outputWork.src = '';
-  btnWork.textContent = 'Processing...';
-
-  const formData = new FormData();
-  formData.append('file', file);
-
- try {
- const response = await fetch('/api/predict/work', {
-    method: 'POST',
-    body: formData,
-  });
-
-  if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
-  }
-
-  const result = await response.json();
-  console.log('Work result:', result);
-
-  // if backend returns an image URL in data[0]
-  if (result.data && result.data[0]) {
-    outputWork.src = result.data[0];
-  } else {
-    outputWork.textContent = '✅ Work API responded, but no image returned';
-  }
-
-} catch (err) {
-  alert('Error contacting the Work API. Please try again.');
-  console.error('Fetch error:', err);
-} finally {
-  btnWork.textContent = 'Run Detection';
-}
-
-});
-</script>
+        
 <script>
 // Navigation handling
 const navLinks = document.querySelectorAll('.nav-link, .sector-card, .btn-primary, .btn-secondary');
