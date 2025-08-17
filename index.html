@@ -382,8 +382,9 @@ btnHealth.addEventListener('click', async () => {
   formData.append('file', file);
 
   try {
-  const response = await fetch('/proxy/api/predict/health', {
-    method: 'GET',
+  const response = await fetch('/api/predict/health', {
+  method: 'POST',
+  body: formData,
   });
 
   if (!response.ok) {
@@ -426,7 +427,7 @@ btnWork.addEventListener('click', async () => {
   formData.append('file', file);
 
  try {
-  const response = await fetch('/proxy/api/predict/work', {
+ const response = await fetch('/api/predict/work', {
     method: 'POST',
     body: formData,
   });
