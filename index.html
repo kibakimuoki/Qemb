@@ -365,17 +365,34 @@
 
 
 <!-- Script to handle API call -->
-<!-- Health Gradio App -->
-<div id="gradio-app-health" style="max-width:800px; margin:20px auto;">
-  <iframe src="https://huggingface.co/spaces/Kibakimuoki/Qemb.AI-yolo-vit-gradio?__theme=light" 
-          frameborder="0" style="width:100%; height:650px;"></iframe>
-</div>
+<script type="module">
+  import { Client } from "https://cdn.jsdelivr.net/npm/@gradio/client@1.0.0/dist/gradio-client.min.js";
 
-<!-- Work Gradio App -->
-<div id="gradio-app-work" style="max-width:800px; margin:20px auto;">
-  <iframe src="https://huggingface.co/spaces/Kibakimuoki/Qemb.AI-yolo-vit-gradio?__theme=light" 
-          frameborder="0" style="width:100%; height:650px;"></iframe>
-</div>
+  // Health App
+  const healthClient = new Client("https://huggingface.co/spaces/Kibakimuoki/Qemb.AI-yolo-vit-gradio");
+  const inputHealth = document.getElementById("input-image-health");
+  const btnHealth = document.getElementById("run-btn-health");
+  const outputHealth = document.getElementById("output-image-health");
+
+  btnHealth.addEventListener("click", async () => {
+    if (!inputHealth.files[0]) return alert("Please upload an image first!");
+    const response = await healthClient.predict([inputHealth.files[0]], { api_name: "predict" });
+    outputHealth.src = response[0]; // displays the returned base64 image
+  });
+
+  // Work App
+  const workClient = new Client("https://huggingface.co/spaces/Kibakimuoki/Qemb.AI-yolo-vit-gradio");
+  const inputWork = document.getElementById("input-image-work");
+  const btnWork = document.getElementById("run-btn-work");
+  const outputWork = document.getElementById("output-image-work");
+
+  btnWork.addEventListener("click", async () => {
+    if (!inputWork.files[0]) return alert("Please upload an image first!");
+    const response = await workClient.predict([inputWork.files[0]], { api_name: "predict" });
+    outputWork.src = response[0];
+  });
+</script>
+
 
         
 <script>
