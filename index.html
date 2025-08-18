@@ -365,55 +365,63 @@
 
 
 <!-- Script to handle API call -->
-
-<script type="module">
-  // ---Health App---
 <script type="module">
   import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client@latest";
 
-  let healthClient;
+  let workClient;
 
   (async () => {
-    healthClient = await client("Kibakimuoki/Qemb.AI-yolo-vit-gradio");
+    workClient = await client("Kibakimuoki/Qemb.AI-yolo-vit-gradio");
   })();
 
-  const inputHealth = document.getElementById("input-image-health");
-  const btnHealth = document.getElementById("run-btn-health");
-  const outputHealth = document.getElementById("output-image-health");
+  const inputWork = document.getElementById("input-image-work");
+  const btnWork = document.getElementById("run-btn-work");
+  const outputWork = document.getElementById("output-image-work");
 
-  // Label under image
-  const labelHealth = document.createElement("p");
-  labelHealth.id = "output-label-health";
-  labelHealth.style.fontWeight = "bold";
-  labelHealth.style.marginTop = "10px";
-  outputHealth.insertAdjacentElement("afterend", labelHealth);
+  // Prediction label
+  const labelWork = document.createElement("p");
+  labelWork.id = "output-label-work";
+  labelWork.style.fontWeight = "bold";
+  labelWork.style.marginTop = "10px";
+  outputWork.insertAdjacentElement("afterend", labelWork);
 
-  btnHealth.addEventListener("click", async () => {
-    if (!inputHealth.files[0]) return alert("Please upload an image first!");
+  // Loading text
+  const loadingWork = document.createElement("p");
+  loadingWork.id = "loading-text-work";
+  loadingWork.style.color = "blue";
+  loadingWork.style.display = "none";
+  loadingWork.textContent = "⏳ Running detection…";
+  btnWork.insertAdjacentElement("afterend", loadingWork);
+
+  btnWork.addEventListener("click", async () => {
+    if (!inputWork.files[0]) return alert("Please upload an image first!");
     try {
-      const response = await healthClient.predict("/predict", [inputHealth.files[0]]);
-      console.log("Health response:", response);
+      // Show spinner text
+      loadingWork.style.display = "block";
+      labelWork.textContent = "";
+      outputWork.src = "";
+
+      // Call Hugging Face Space
+      const response = await workClient.predict("/predict", [inputWork.files[0]]);
+      console.log("Work response:", response);
 
       if (response && response.data) {
-        // Show YOLO detection image
-        outputHealth.src = response.data[0].url || response.data[0];
-
-        // Show ViT classification label
+        outputWork.src = response.data[0].url || response.data[0];
         const label = response.data[1];
-        if (typeof label === "string") {
-          labelHealth.textContent = "Prediction: " + label;
-        } else {
-          labelHealth.textContent = "Prediction: " + JSON.stringify(label);
-        }
+        labelWork.textContent = "Prediction: " + (typeof label === "string" ? label : JSON.stringify(label));
       } else {
-        labelHealth.textContent = "No output returned.";
+        labelWork.textContent = "No output returned.";
       }
     } catch (err) {
       console.error(err);
-      labelHealth.textContent = "Error running detection. See console.";
+      labelWork.textContent = "Error running detection. See console.";
+    } finally {
+      // Hide spinner
+      loadingWork.style.display = "none";
     }
   });
 </script>
+
 
     
 
