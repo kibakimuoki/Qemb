@@ -552,21 +552,36 @@ navLinks.forEach(link => {
 // Show home by default
 showSection('home');
 </script>
-<script src="https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.umd.js"></script>
+<!-- Add Gradio JS Client -->
+<script src="https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js"></script>
+
 <script>
-  (async () => {
-    const client = await gradio.Client.connect("https://your-space.hf.space/");
+  async function runDetection() {
+    // Create Gradio client for your HuggingFace Space or local app
+    const client = await window.gradio.Client.connect("http://127.0.0.1:7860");  
+    // If deployed on HuggingFace, replace with:
+    // const client = await window.gradio.Client.connect("username/your-space-name");
 
-    document.getElementById("detect-btn").addEventListener("click", async () => {
-      const input = document.getElementById("image-input").files[0];
-      const result = await client.predict("/run_yolo_vit", [input]);
-      console.log(result.data);
+    const imgInput = document.getElementById("imgInput").files[0];
 
-      // Example: show detection results in your UI
-      document.getElementById("result").innerText = JSON.stringify(result.data);
+    if (!imgInput) {
+      alert("Please upload an image first!");
+      return;
+    }
+
+    // Call the backend function (matches `api_name="run_yolo_vit"` in app.py)
+    const result = await client.predict("/run_yolo_vit", {
+      img: imgInput
     });
-  })();
+
+    console.log(result);
+
+    // Update frontend
+    document.getElementById("outputImage").src = result.data[0]; // YOLO detections (image)
+    document.getElementById("outputLabel").innerText = result.data[1]; // ViT class label
+  }
 </script>
+
 
 
 </body>
