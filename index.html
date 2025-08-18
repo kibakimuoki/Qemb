@@ -552,7 +552,22 @@ navLinks.forEach(link => {
 // Show home by default
 showSection('home');
 </script>
-<script src="https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.umd.js"></script>
+<script>
+  (async () => {
+    const client = await gradio.Client.connect("https://your-space.hf.space/");
+
+    document.getElementById("detect-btn").addEventListener("click", async () => {
+      const input = document.getElementById("image-input").files[0];
+      const result = await client.predict("/run_yolo_vit", [input]);
+      console.log(result.data);
+
+      // Example: show detection results in your UI
+      document.getElementById("result").innerText = JSON.stringify(result.data);
+    });
+  })();
+</script>
+
 
 </body>
 </html>
