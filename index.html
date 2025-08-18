@@ -551,35 +551,46 @@ navLinks.forEach(link => {
 
 // Show home by default
 showSection('home');
-</script>
-<!-- Add Gradio JS Client -->
-<script src="https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js"></script>
+<div>
+  <h2>YOLO + ViT Detection App</h2>
+  
+  <!-- Upload image -->
+  <input type="file" id="imgInput" />
+  
+  <!-- Run button -->
+  <button id="runBtn">Run Detection</button>
+  
+  <!-- Outputs -->
+  <div>
+    <h3>Detection Result</h3>
+    <img id="outputImage" alt="Detections will appear here" style="max-width:400px; display:block;"/>
+    <h3>ViT Prediction</h3>
+    <div id="outputLabel"></div>
+  </div>
+</div>
 
-<script>
-  async function runDetection() {
-    // Create Gradio client for your HuggingFace Space or local app
-    const client = await window.gradio.Client.connect("http://127.0.0.1:7860");  
-    // If deployed on HuggingFace, replace with:
-    // const client = await window.gradio.Client.connect("username/your-space-name");
 
-    const imgInput = document.getElementById("imgInput").files[0];
+<script type="module">
+  import { Client } from "https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js";
 
-    if (!imgInput) {
+  document.getElementById("runBtn").addEventListener("click", async () => {
+    const client = await Client.connect("https://<your-space-name>.hf.space/");
+    const fileInput = document.getElementById("imgInput");
+    const file = fileInput.files[0];
+    
+    if (!file) {
       alert("Please upload an image first!");
       return;
     }
 
-    // Call the backend function (matches `api_name="run_yolo_vit"` in app.py)
-    const result = await client.predict("/run_yolo_vit", {
-      img: imgInput
-    });
-
-    console.log(result);
-
-    // Update frontend
-    document.getElementById("outputImage").src = result.data[0]; // YOLO detections (image)
-    document.getElementById("outputLabel").innerText = result.data[1]; // ViT class label
-  }
+    try {
+      const result = await client.predict("/run_yolo_vit", [file]);
+      document.getElementById("outputImage").src = result.data[0];
+      document.getElementById("outputLabel").innerText = result.data[1];
+    } catch (err) {
+      console.error("Prediction error:", err);
+    }
+  });
 </script>
 
 
