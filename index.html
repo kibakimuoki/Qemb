@@ -374,11 +374,21 @@
   const btnHealth = document.getElementById("run-btn-health");
   const outputHealth = document.getElementById("output-image-health");
 
-  btnHealth.addEventListener("click", async () => {
-    if (!inputHealth.files[0]) return alert("Please upload an image first!");
-    const response = await healthClient.predict([inputHealth.files[0]], { api_name: "predict" });
-    outputHealth.src = response[0]; // displays the returned base64 image
-  });
+ btnHealth.addEventListener("click", async () => {
+  if (!inputHealth.files[0]) return alert("Please upload an image first!");
+  try {
+    const response = await healthClient.predict([inputHealth.files[0]], { api_name: "run_yolo_vit" });
+    if (response && response[0]) {
+      outputHealth.src = response[0];
+    } else {
+      alert("No output returned. Check Hugging Face Space.");
+    }
+  } catch (err) {
+    console.error(err);
+    alert("Error running detection. See console for details.");
+  }
+});
+
 
   // Work App
   const workClient = new Client("https://huggingface.co/spaces/Kibakimuoki/Qemb.AI-yolo-vit-gradio");
@@ -386,11 +396,21 @@
   const btnWork = document.getElementById("run-btn-work");
   const outputWork = document.getElementById("output-image-work");
 
-  btnWork.addEventListener("click", async () => {
-    if (!inputWork.files[0]) return alert("Please upload an image first!");
-    const response = await workClient.predict([inputWork.files[0]], { api_name: "predict" });
-    outputWork.src = response[0];
-  });
+ btnWork.addEventListener("click", async () => {
+  if (!inputWork.files[0]) return alert("Please upload an image first!");
+  try {
+    const response = await workClient.predict([inputWork.files[0]], { api_name: "run_yolo_vit" });
+    if (response && response[0]) {
+      outputWork.src = response[0];
+    } else {
+      alert("No output returned. Check Hugging Face Space.");
+    }
+  } catch (err) {
+    console.error(err);
+    alert("Error running detection. See console for details.");
+  }
+});
+
 </script>
 
 
