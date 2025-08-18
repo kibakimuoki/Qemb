@@ -427,7 +427,7 @@
       outputWork.src = "";
 
       // Call Hugging Face Space
-      const response = await workClient.predict("/predict", [inputWork.files[0]]);
+      const response = await workClient.predict("run_yolo_vit", [inputWork.files[0]]);
       console.log("Work response:", response);
 
       if (response && response.data) {
@@ -449,9 +449,7 @@
     }
   });
 </script>
-
-
-    
+ 
 
   // --- Work App ---
   <script type="module">
@@ -502,7 +500,7 @@
 </script>
 
 
-
+<script>
   // Work App
   const workClient = new Client("https://huggingface.co/spaces/Kibakimuoki/Qemb.AI-yolo-vit-gradio");
   const inputWork = document.getElementById("input-image-work");
