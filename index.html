@@ -301,7 +301,7 @@
       <section id="funding" class="content-section" style="display:none;">
   <header class="fade-in slide-down">
     <h1>Funding & Investment</h1>
-    <p class="fade-in-delay">Be part of the next multibillion-dollar company solving the world’s greatest challenges</p>
+    <p class="fade-in-delay">Be part of the next multitrillion-dollar company solving the world’s exestintial challenges</p>
   </header>
 
   <section class="fade-in fade-in-delay-1 slide-left">
@@ -366,30 +366,39 @@
 
 <!-- Script to handle API call -->
 <script type="module">
-  import { Client } from "https://cdn.jsdelivr.net/npm/@gradio/client@1.0.0/dist/gradio-client.min.js";
 
-  // Health App
-  const healthClient = new Client("https://huggingface.co/spaces/Kibakimuoki/Qemb.AI-yolo-vit-gradio");
+// Health App
+  import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client@latest";
+
+    let healthClient, workClient;
+
+    (async () => {
+      healthClient = await client("Kibakimuoki/Qemb.AI-yolo-vit-gradio");
+      workClient = healthClient; // since both point to the same Space
+    })();
+
   const inputHealth = document.getElementById("input-image-health");
   const btnHealth = document.getElementById("run-btn-health");
   const outputHealth = document.getElementById("output-image-health");
 
- btnHealth.addEventListener("click", async () => {
+btnHealth.addEventListener("click", async () => {
   if (!inputHealth.files[0]) return alert("Please upload an image first!");
   try {
     const response = await healthClient.predict("/predict", [inputHealth.files[0]]);
-    if (response && response.data) {
-      outputHealth.src = response.data[0].url || response.data[0]; // image
-      console.log("Predicted class:", response.data[1]); // label
-} else {
-  alert("No output returned. Check Hugging Face Space.");
-}
+    console.log("Gradio response:", response);
 
+    if (response && response.data) {
+      outputHealth.src = response.data[0].url || response.data[0]; // YOLO image
+      alert("Predicted: " + JSON.stringify(response.data[1]));     // ViT label
+    } else {
+      alert("No output returned. Check Hugging Face Space logs.");
+    }
   } catch (err) {
     console.error(err);
     alert("Error running detection. See console for details.");
   }
 });
+
 
 
   // Work App
