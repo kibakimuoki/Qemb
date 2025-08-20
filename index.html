@@ -473,7 +473,7 @@
   btnWork.addEventListener("click", async () => {
     if (!inputWork.files[0]) return alert("Please upload an image first!");
     try {
-      const response = await workClient.predict("/predict", [inputWork.files[0]]);
+      const response = await workClient.predict("/run_yolo_vit", [inputWork.files[0]]);
       console.log("Work response:", response);
 
       if (response && response.data) {
