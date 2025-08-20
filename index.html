@@ -565,38 +565,81 @@
 
 
 
-  // DOM elements
+ <script type="module">
+  import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js";
+
+  // DOM elements for work section
   const inputWork = document.getElementById("input-image-work");
   const btnWork = document.getElementById("run-btn-work");
   const outputWork = document.getElementById("output-image-work");
+  
+  // Create prediction label
+  const labelWork = document.createElement("p");
+  labelWork.id = "output-label-work";
+  labelWork.style.fontWeight = "bold";
+  labelWork.style.marginTop = "10px";
+  outputWork.parentNode.insertBefore(labelWork, outputWork.nextSibling);
+  
+  // Create loading indicator
+  const loadingWork = document.createElement("div");
+  loadingWork.id = "loading-text-work";
+  loadingWork.style.color = "blue";
+  loadingWork.style.display = "none";
+  loadingWork.innerHTML = `Loading...`;
+  btnWork.parentNode.insertBefore(loadingWork, btnWork.nextSibling);
 
-  // When the button is clicked → run inference
-  btnWork.addEventListener("click", async () => {
-    if (!workClient) {
-      workClient = await connectToModel(spaceUrl);
-    }
+  let workClient = null;
 
-    if (!workClient) {
-      alert("Could not connect to the model. Please try again.");
-      return;
-    }
-
-    const file = inputWork.files[0];
-    if (!file) {
-      alert("Please upload an image first.");
-      return;
-    }
-
+  // Initialize client
+  async function initializeClient() {
     try {
-      const result = await workClient.predict("/predict", [file]); // 👈 adjust endpoint & inputs as needed
-      console.log("✅ Prediction:", result);
-      outputWork.src = result.data[0]; // 👈 depends on output type (image/text/etc.)
+      workClient = await client("Kibakimuoki/Qemb.AI-yolo-vit-gradio");
+      console.log("Gradio client initialized successfully");
+    } catch (error) {
+      console.error("Failed to initialize Gradio client:", error);
+    }
+  }
+
+  // Initialize on page load
+  initializeClient();
+
+  btnWork.addEventListener("click", async () => {
+    if (!inputWork.files[0]) {
+      alert("Please upload an image first!");
+      return;
+    }
+    
+    try {
+      // Show loading, disable button
+      loadingWork.style.display = "block";
+      btnWork.disabled = true;
+      
+      // Clear previous results
+      outputWork.src = "";
+      labelWork.textContent = "";
+      
+      if (!workClient) {
+        await initializeClient();
+      }
+      
+      const response = await workClient.predict("/run_yolo_vit", [inputWork.files[0]]);
+      
+      if (response && response.data) {
+        outputWork.src = response.data[0];
+        labelWork.textContent = "Prediction: " + 
+          (typeof response.data[1] === "string" ? 
+           response.data[1] : JSON.stringify(response.data[1]));
+      }
     } catch (err) {
-      console.error("❌ Prediction error:", err);
+      console.error("Prediction error:", err);
+      labelWork.textContent = "Error: " + err.message;
+    } finally {
+      // Hide loading, enable button
+      loadingWork.style.display = "none";
+      btnWork.disabled = false;
     }
   });
 </script>
-
 
         
 <script>
