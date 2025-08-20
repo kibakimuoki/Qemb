@@ -548,10 +548,14 @@
   }
 
   // Example: connect to your YOLO-ViT Gradio Space
-<script type="module">
-  import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js";
 
-  const spaceUrl = "https://kibakimuoki-qemb-ai-yolo-vit-gradio.hf.space/";
+
+
+
+ <script type="module">
+  import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js";
+  
+   const spaceUrl = "https://kibakimuoki-qemb-ai-yolo-vit-gradio.hf.space/";
 
   (async () => {
     try {
@@ -560,14 +564,7 @@
     } catch (err) {
       console.error("Connection failed:", err);
     }
-  })();
-</script>
-
-
-
- <script type="module">
-  import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js";
-
+     
   // DOM elements for work section
   const inputWork = document.getElementById("input-image-work");
   const btnWork = document.getElementById("run-btn-work");
