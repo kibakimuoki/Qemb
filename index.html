@@ -8,32 +8,57 @@
     <title>Qemb.AI | Leading the Future</title>
     <link rel="stylesheet" href="qemb.css" />
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+    <style>
+      /* Spinner animation */
+      .spinner {
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #3498db;
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        animation: spin 1s linear infinite;
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 8px;
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      /* Error message styling */
+      .error-message {
+        color: red;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid red;
+        border-radius: 4px;
+        background-color: #ffeeee;
+      }
+    </style>
 </head>
 
-    <body>
-
+<body>
     <!-- Navigation -->
-    
     <header id="navbar" class="navbar glass">
-  <div class="nav-container">
-    <div class="logo">
-      <a href="#" data-section="home">Qemb.AI</a>
-    </div>
-      <nav>
-  <ul>
-    <li><a href="#" class="nav-link active" data-section="home">Home</a></li>
-    <li><a href="#" class="nav-link" data-section="health">Health</a></li>
-    <li><a href="#" class="nav-link" data-section="climate">Climate</a></li>
-    <li><a href="#" class="nav-link" data-section="agriculture">Agriculture</a></li>
-    <li><a href="#" class="nav-link" data-section="research">Research</a></li>
-    <li><a href="#" class="nav-link" data-section="funding">Funding</a></li>
-    <li><a href="#" class="nav-link" data-section="contact">Contact</a></li>
-  </ul>
-</nav>  
-
-  </div>
-</header>
-
+      <div class="nav-container">
+        <div class="logo">
+          <a href="#" data-section="home">Qemb.AI</a>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="#" class="nav-link active" data-section="home">Home</a></li>
+            <li><a href="#" class="nav-link" data-section="health">Health</a></li>
+            <li><a href="#" class="nav-link" data-section="climate">Climate</a></li>
+            <li><a href="#" class="nav-link" data-section="agriculture">Agriculture</a></li>
+            <li><a href="#" class="nav-link" data-section="research">Research</a></li>
+            <li><a href="#" class="nav-link" data-section="funding">Funding</a></li>
+            <li><a href="#" class="nav-link" data-section="contact">Contact</a></li>
+          </ul>
+        </nav>  
+      </div>
+    </header>
 
     <!-- Content Sections -->
     <main>
@@ -45,56 +70,54 @@
                 <p>Innovating across AI, Quantum Technologies, Climate and Agriculture</p>
                 <div class="hero-buttons">
                     <button class="btn-primary" data-section="explore-work">Explore Our Work</button>
-
                     <button class="btn-secondary" data-section="contact">Contact Us</button>
                 </div>
             </div>
         </section>
 
         <section id="about" class="about glass fade-in slide-up delay-1">
-  <div class="about-container">
-    <div class="about-image fade-in delay-2">
-        <img src= "Kibaki.png" alt="Kibaki Muoki - Founder & CEO" style="max-width: 300px; height: auto; border-radius: 12px; box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);" />
-    </div>
+          <div class="about-container">
+            <div class="about-image fade-in delay-2">
+                <img src="Kibaki.png" alt="Kibaki Muoki - Founder & CEO" style="max-width: 300px; height: auto; border-radius: 12px; box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);" onerror="this.style.display='none'" />
+            </div>
 
-    <div class="about-text fade-in delay-3">
-      <h2>Meet Our Founder</h2>
-      <h3>Kibaki Muoki</h3>
-      <p>
-        A visionary Machine Learning Engineer and futurist, Kibaki is driven by a singular mission: to end disease through the power of Quantum computing and Artificial Intelligence.
-      </p>
-      <p>
-        Harnessing cutting-edge AI and quantum technologies, he pioneers revolutionary solutions aimed at decoding the complexities of human health and transforming global medicine. His work lights the path toward a disease-free future, where innovation meets humanity’s greatest challenges.
-      </p>
-      <p>
-        Under his leadership, Qemb pushes the boundaries of technology to build a smarter, healthier, and more sustainable tomorrow.
-      </p>
+            <div class="about-text fade-in delay-3">
+              <h2>Meet Our Founder</h2>
+              <h3>Kibaki Muoki</h3>
+              <p>
+                A visionary Machine Learning Engineer and futurist, Kibaki is driven by a singular mission: to end disease through the power of Quantum computing and Artificial Intelligence.
+              </p>
+              <p>
+                Harnessing cutting-edge AI and quantum technologies, he pioneers revolutionary solutions aimed at decoding the complexities of human health and transforming global medicine. His work lights the path toward a disease-free future, where innovation meets humanity's greatest challenges.
+              </p>
+              <p>
+                Under his leadership, Qemb pushes the boundaries of technology to build a smarter, healthier, and more sustainable tomorrow.
+              </p>
 
-      <hr class="section-divider" />
+              <hr class="section-divider" />
 
-      <h2>About Qemb</h2>
-      <p>
-        Qemb is a visionary tech company leveraging AI, quantum computing, and futuristic innovations to solve global challenges in health, climate, agriculture, and beyond.
-      </p>
+              <h2>About Qemb</h2>
+              <p>
+                Qemb is a visionary tech company leveraging AI, quantum computing, and futuristic innovations to solve global challenges in health, climate, agriculture, and beyond.
+              </p>
 
-      <div class="stats">
-        <div class="stat">
-          <h3>12+</h3>
-          <p>Projects</p>
-        </div>
-        <div class="stat">
-          <h3>8+</h3>
-          <p>Partners</p>
-        </div>
-        <div class="stat">
-          <h3>5</h3>
-          <p>Countries Impacted</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
+              <div class="stats">
+                <div class="stat">
+                  <h3>12+</h3>
+                  <p>Projects</p>
+                </div>
+                <div class="stat">
+                  <h3>8+</h3>
+                  <p>Partners</p>
+                </div>
+                <div class="stat">
+                  <h3>5</h3>
+                  <p>Countries Impacted</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
         <section class="sectors">
             <h2>Sectors We Innovate In</h2>
@@ -105,256 +128,249 @@
                 <button class="sector-card glass" data-section="research">Research & Funding</button>
             </div>
         </section>
-
       </section>
 
       <!-- Other Sections: Initially Hidden -->
-     <section id="health" class="content-section" style="display:none;">
-  <header class="fade-in slide-down">
-    <h1>Health Innovation at Qemb</h1>
-    <p class="fade-in-delay">Harnessing AI and Quantum Technology to Shape a Disease-Free Future</p>
-  </header>
+      <section id="health" class="content-section" style="display:none;">
+        <header class="fade-in slide-down">
+          <h1>Health Innovation at Qemb</h1>
+          <p class="fade-in-delay">Harnessing AI and Quantum Technology to Shape a Disease-Free Future</p>
+        </header>
 
-  <!-- QPT-1 PROJECT -->
-  <section class="fade-in fade-in-delay-1 slide-left">
-    <h2>Introducing QPT-1 – Our First Health Revolution</h2>
-    <p>
-      At Qemb.AI, we are aiming towards creating a precise and accurate digitial twin of human for each individual. Our health journey begins with <strong>QPT-1</strong> — an advanced AI model for early breast cancer detection.
-      QPT-1 is an intelligent, self-learning diagnostic system designed for precision and accuracy.
-      By integrating it directly with mammography systems, QPT-1 continually improves its detection capabilities over time, offering clinicians real-time, highly reliable results.
-    </p>
-    <p>
-      This groundbreaking system has the potential to detect anomalies at their earliest stages, giving patients the best possible chance for successful treatment.
-    </p>
-    <img src="Breast Cancer Detection.jpeg" alt="Breast cancer diagnosis AI model" class="fade-in fade-in-delay-2" />
-    <img src="Health Care Innovation.jpeg" alt="Innovation with AI" class="fade-in fade-in-delay-2" />
-  </section>
+        <!-- QPT-1 PROJECT -->
+        <section class="fade-in fade-in-delay-1 slide-left">
+          <h2>Introducing QPT-1 – Our First Health Revolution</h2>
+          <p>
+            At Qemb.AI, we are aiming towards creating a precise and accurate digitial twin of human for each individual. Our health journey begins with <strong>QPT-1</strong> — an advanced AI model for early breast cancer detection.
+            QPT-1 is an intelligent, self-learning diagnostic system designed for precision and accuracy.
+            By integrating it directly with mammography systems, QPT-1 continually improves its detection capabilities over time, offering clinicians real-time, highly reliable results.
+          </p>
+          <p>
+            This groundbreaking system has the potential to detect anomalies at their earliest stages, giving patients the best possible chance for successful treatment.
+          </p>
+          <img src="Breast Cancer Detection.jpeg" alt="Breast cancer diagnosis AI model" class="fade-in fade-in-delay-2" onerror="this.style.display='none'" />
+          <img src="Health Care Innovation.jpeg" alt="Innovation with AI" class="fade-in fade-in-delay-2" onerror="this.style.display='none'" />
+        </section>
 
-  <!-- DIGITAL TWIN VISION -->
-  <section class="fade-in fade-in-delay-3 slide-left">
-    <h2>The Long-Term Vision: Building the Digital Human Twin</h2>
-    <p>
-      Our ultimate goal extends far beyond single-disease detection.
-      We envision creating a <strong>full digital twin of the human body</strong> — a virtual replica that includes both anatomical and physiological details.
-      This digital twin would allow researchers and doctors to simulate, monitor, and predict the progression of diseases without ever touching the patient.
-      This will involve monitoring the interaction of cells, biomolecules and pathogens, and consequently finding the solution. We are envisioning finding
-      a solution to all diseases, not just treatment but finding a cure.
-    </p>
-    <p>
-      By coupling AI with quantum technology, we aim to run complex, ultra-fast simulations to test treatments,
-      find cures for chronic illnesses, and ultimately, pave the way to a <em>disease-free future</em>.
-    </p>
-  </section>
+        <!-- DIGITAL TWIN VISION -->
+        <section class="fade-in fade-in-delay-3 slide-left">
+          <h2>The Long-Term Vision: Building the Digital Human Twin</h2>
+          <p>
+            Our ultimate goal extends far beyond single-disease detection.
+            We envision creating a <strong>full digital twin of the human body</strong> — a virtual replica that includes both anatomical and physiological details.
+            This digital twin would allow researchers and doctors to simulate, monitor, and predict the progression of diseases without ever touching the patient.
+            This will involve monitoring the interaction of cells, biomolecules and pathogens, and consequently finding the solution. We are envisioning finding
+            a solution to all diseases, not just treatment but finding a cure.
+          </p>
+          <p>
+            By coupling AI with quantum technology, we aim to run complex, ultra-fast simulations to test treatments,
+            find cures for chronic illnesses, and ultimately, pave the way to a <em>disease-free future</em>.
+          </p>
+        </section>
 
-  <!-- HOW AI + QUANTUM WILL CHANGE MEDICINE -->
-  <section class="fade-in fade-in-delay-4 slide-left">
-    <h2>AI + Quantum: The Cure Engine</h2>
-    <p>
-      Quantum computing enables calculations that are practically impossible with traditional systems,
-      while AI brings the power of pattern recognition, learning, and predictive analysis.
-      Together, they form the <strong>Cure Engine</strong> — a platform capable of modeling human biology at unprecedented detail,
-      finding hidden correlations in medical data, and rapidly testing millions of treatment pathways.
-    </p>
-  </section>
+        <!-- HOW AI + QUANTUM WILL CHANGE MEDICINE -->
+        <section class="fade-in fade-in-delay-4 slide-left">
+          <h2>AI + Quantum: The Cure Engine</h2>
+          <p>
+            Quantum computing enables calculations that are practically impossible with traditional systems,
+            while AI brings the power of pattern recognition, learning, and predictive analysis.
+            Together, they form the <strong>Cure Engine</strong> — a platform capable of modeling human biology at unprecedented detail,
+            finding hidden correlations in medical data, and rapidly testing millions of treatment pathways.
+          </p>
+        </section>
 
-  <!-- GLOBAL IMPACT -->
-  <section class="fade-in fade-in-delay-5 slide-left">
-    <h2>Global Health Access</h2>
-    <p>
-      At Qemb, we believe that cutting-edge medical technology should not be a luxury.
-      Our solutions are designed with scalability and accessibility in mind, ensuring that communities
-      in underserved regions can benefit from life-saving diagnostics and treatment innovations.
-    </p>
-      
-      <!-- Gradio App Container -->
-<div id="gradio-app-health" style="max-width:800px; margin:20px auto; border:2px solid #007BFF; border-radius:12px; box-shadow:0 4px 20px rgba(0,0,0,0.15); padding:10px;">
-  <input type="file" id="input-image-health" />
-  <button id="run-btn-health">Run Detection</button>
-  <img id="output-image-health" style="margin-top:15px; max-width:100%;" />
-</div>
-
-
-  </section>
-
-
-</section>
-
-
-
+        <!-- GLOBAL IMPACT -->
+        <section class="fade-in fade-in-delay-5 slide-left">
+          <h2>Global Health Access</h2>
+          <p>
+            At Qemb, we believe that cutting-edge medical technology should not be a luxury.
+            Our solutions are designed with scalability and accessibility in mind, ensuring that communities
+            in underserved regions can benefit from life-saving diagnostics and treatment innovations.
+          </p>
+            
+          <!-- Gradio App Container -->
+          <div id="gradio-app-health" style="max-width:800px; margin:20px auto; border:2px solid #007BFF; border-radius:12px; box-shadow:0 4px 20px rgba(0,0,0,0.15); padding:10px;">
+            <input type="file" id="input-image-health" />
+            <button id="run-btn-health">Run Detection</button>
+            <div id="loading-health" style="display:none; color:blue; margin:10px 0;">
+              <span class="spinner"></span> Processing image...
+            </div>
+            <img id="output-image-health" style="margin-top:15px; max-width:100%; display:none;" />
+            <p id="output-label-health" style="font-weight:bold; margin-top:10px;"></p>
+          </div>
+        </section>
+      </section>
 
       <section id="climate" class="content-section" style="display:none;">
-  <header class="fade-in slide-down">
-    <h1>Climate Solutions at Qemb</h1>
-    <p class="fade-in-delay">Harnessing AI and Quantum innovations to fight climate change.</p>
-  </header>
+        <header class="fade-in slide-down">
+          <h1>Climate Solutions at Qemb</h1>
+          <p class="fade-in-delay">Harnessing AI and Quantum innovations to fight climate change.</p>
+        </header>
 
-  <section class="fade-in fade-in-delay-1 slide-left">
-    <h2>AI & Quantum for Climate Monitoring</h2>
-    <p>
-      Our technology models environmental data in real-time to predict natural disasters,
-      monitor carbon emissions, and track global temperature shifts — enabling smarter decisions for a sustainable future.
-    </p>
-    <div class="image-gallery">
-      <img src="ClimateImage1.webp" alt="AI climate monitoring system" />
-      <img src="ClimateImage2.webp" alt="Quantum tech for environmental modeling" />
-    </div>
-  </section>
+        <section class="fade-in fade-in-delay-1 slide-left">
+          <h2>AI & Quantum for Climate Monitoring</h2>
+          <p>
+            Our technology models environmental data in real-time to predict natural disasters,
+            monitor carbon emissions, and track global temperature shifts — enabling smarter decisions for a sustainable future.
+          </p>
+          <div class="image-gallery">
+            <img src="ClimateImage1.webp" alt="AI climate monitoring system" onerror="this.style.display='none'" />
+            <img src="ClimateImage2.webp" alt="Quantum tech for environmental modeling" onerror="this.style.display='none'" />
+          </div>
+        </section>
 
-  <section class="fade-in fade-in-delay-2 slide-left">
-    <h2>Sustainability Partnerships</h2>
-    <p>
-      We are seeking partners working in carbon neutrality, climate finance, and clean energy deployment.
-      Qemb is open to research collaboration and investment in climate resilience technologies.
-    </p>
-    <ul>
-      <li>🌍 Carbon neutrality initiatives</li>
-      <li>⚡ Renewable energy innovations</li>
-      <li>💧 Water conservation projects</li>
-      <li>🌱 Climate finance solutions</li>
-    </ul>
-  </section>
+        <section class="fade-in fade-in-delay-2 slide-left">
+          <h2>Sustainability Partnerships</h2>
+          <p>
+            We are seeking partners working in carbon neutrality, climate finance, and clean energy deployment.
+            Qemb is open to research collaboration and investment in climate resilience technologies.
+          </p>
+          <ul>
+            <li>🌍 Carbon neutrality initiatives</li>
+            <li>⚡ Renewable energy innovations</li>
+            <li>💧 Water conservation projects</li>
+            <li>🌱 Climate finance solutions</li>
+          </ul>
+        </section>
 
-  <section class="fade-in fade-in-delay-3 slide-left">
-    <h2>Future Vision</h2>
-    <p>
-      Our AI systems are continually learning, improving climate predictions and providing decision-makers
-      with actionable insights. By merging AI with quantum computing, we are breaking limits in environmental modeling and resilience planning.
-    </p>
-  </section>
-</section>
+        <section class="fade-in fade-in-delay-3 slide-left">
+          <h2>Future Vision</h2>
+          <p>
+            Our AI systems are continually learning, improving climate predictions and providing decision-makers
+            with actionable insights. By merging AI with quantum computing, we are breaking limits in environmental modeling and resilience planning.
+          </p>
+        </section>
+      </section>
 
+      <section id="agriculture" class="content-section" style="display:none;">
+        <header class="fade-in slide-down">
+          <h1>Qemb Agriculture</h1>
+          <p class="fade-in-delay">Future-ready farming powered by AI and Quantum Technology.</p>
+        </header>
 
-     <section id="agriculture" class="content-section" style="display:none;">
-  <header class="fade-in slide-down">
-    <h1>Qemb Agriculture</h1>
-    <p class="fade-in-delay">Future-ready farming powered by AI and Quantum Technology.</p>
-  </header>
+        <section class="fade-in fade-in-delay-1 slide-left">
+          <h2>Precision Agriculture Using AI</h2>
+          <p>
+            We're developing AI-powered systems that analyze soil data, monitor weather patterns, and offer actionable insights for optimal planting and harvesting. Our goal: to boost yields while conserving resources.
+          </p>
+          <div class="image-grid">
+            <div class="image-card">
+              <img src="AgricultureImage1.webp" alt="Drone monitoring farmland with AI" onerror="this.style.display='none'" />
+            </div>
+            <div class="image-card">
+              <img src="AgricultureImage2.jpg" alt="Quantum computing for crop analysis" onerror="this.style.display='none'" />
+            </div>
+          </div>
+        </section>
 
-  <section class="fade-in fade-in-delay-1 slide-left">
-    <h2>Precision Agriculture Using AI</h2>
-    <p>
-      We’re developing AI-powered systems that analyze soil data, monitor weather patterns, and offer actionable insights for optimal planting and harvesting. Our goal: to boost yields while conserving resources.
-    </p>
-    <div class="image-grid">
-      <div class="image-card">
-        <img src="AgricultureImage1.webp" alt="Drone monitoring farmland with AI" />
-      </div>
-      <div class="image-card">
-        <img src="AgricultureImage2.jpg" alt="Quantum computing for crop analysis" />
-      </div>
-    </div>
-  </section>
-
-  <section class="fade-in fade-in-delay-2 slide-left">
-    <h2>Transforming Rural Farming</h2>
-    <p>
-      By making advanced technologies accessible to underserved regions, Qemb is revolutionizing small-scale farming and ensuring food security across the globe.
-    </p>
-  </section>
-</section>
-<section id="explore-work" class="content-section" style="display:none;">
-  <header>
-    <h1>Explore Our Work</h1>
-    <p>Experience the cutting-edge AI technology powering Qemb.AI</p>
-  </header>
-    <!-- Gradio App Container -->
-<div id="gradio-app-work" style="max-width: 800px; margin: 20px auto; border: 2px solid #007BFF; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); padding: 10px;">
-  <input type="file" id="input-image-work" />
-  <button id="run-btn-work">Run Detection</button>
-  <img id="output-image-work" style="margin-top: 15px; max-width: 100%;" />
-</div>
-
-
-</section>
-
-
+        <section class="fade-in fade-in-delay-2 slide-left">
+          <h2>Transforming Rural Farming</h2>
+          <p>
+            By making advanced technologies accessible to underserved regions, Qemb is revolutionizing small-scale farming and ensuring food security across the globe.
+          </p>
+        </section>
+      </section>
+      
+      <section id="explore-work" class="content-section" style="display:none;">
+        <header>
+          <h1>Explore Our Work</h1>
+          <p>Experience the cutting-edge AI technology powering Qemb.AI</p>
+        </header>
+        <!-- Gradio App Container -->
+        <div id="gradio-app-work" style="max-width: 800px; margin: 20px auto; border: 2px solid #007BFF; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); padding: 10px;">
+          <input type="file" id="input-image-work" accept="image/*" />
+          <button id="run-btn-work">Run Detection</button>
+          <div id="loading-work" style="display:none; color:blue; margin:10px 0;">
+            <span class="spinner"></span> Processing image...
+          </div>
+          <img id="output-image-work" style="margin-top: 15px; max-width: 100%; display:none;" />
+          <p id="output-label-work" style="font-weight:bold; margin-top:10px;"></p>
+        </div>
+      </section>
 
       <section id="research" class="content-section" style="display:none;">
-  <header class="fade-in slide-down">
-    <h1>Research & Innovation at Qemb</h1>
-    <p class="fade-in-delay">Driving breakthroughs in AI, Quantum Computing, and their real-world applications.</p>
-  </header>
+        <header class="fade-in slide-down">
+          <h1>Research & Innovation at Qemb</h1>
+          <p class="fade-in-delay">Driving breakthroughs in AI, Quantum Computing, and their real-world applications.</p>
+        </header>
 
-  <section class="fade-in fade-in-delay-1 slide-left">
-    <h2>Cutting-Edge AI Research</h2>
-    <p>
-      Our multidisciplinary teams develop advanced AI models that tackle complex problems—from predictive healthcare diagnostics to climate simulation—pushing the boundaries of what's possible.
-    </p>
-  </section>
+        <section class="fade-in fade-in-delay-1 slide-left">
+          <h2>Cutting-Edge AI Research</h2>
+          <p>
+            Our multidisciplinary teams develop advanced AI models that tackle complex problems—from predictive healthcare diagnostics to climate simulation—pushing the boundaries of what's possible.
+          </p>
+        </section>
 
-  <section class="fade-in fade-in-delay-2 slide-left">
-    <h2>Quantum Computing Exploration</h2>
-    <p>
-      We explore novel quantum algorithms and hardware integrations to unlock unprecedented computational power, enabling transformative solutions in medicine, energy, and materials science.
-    </p>
-  </section>
+        <section class="fade-in fade-in-delay-2 slide-left">
+          <h2>Quantum Computing Exploration</h2>
+          <p>
+            We explore novel quantum algorithms and hardware integrations to unlock unprecedented computational power, enabling transformative solutions in medicine, energy, and materials science.
+          </p>
+        </section>
 
-  <section class="fade-in fade-in-delay-3 slide-left">
-    <h2>Collaborative Research & Partnerships</h2>
-    <p>
-      Qemb partners with leading universities, research institutes, and industry leaders worldwide to accelerate innovation and translate scientific discoveries into impactful technologies.
-    </p>
-  </section>
-</section>
-
+        <section class="fade-in fade-in-delay-3 slide-left">
+          <h2>Collaborative Research & Partnerships</h2>
+          <p>
+            Qemb partners with leading universities, research institutes, and industry leaders worldwide to accelerate innovation and translate scientific discoveries into impactful technologies.
+          </p>
+        </section>
+      </section>
 
       <section id="funding" class="content-section" style="display:none;">
-  <header class="fade-in slide-down">
-    <h1>Funding & Investment</h1>
-    <p class="fade-in-delay">Be part of the next multitrillion-dollar company solving the world’s exestintial challenges</p>
-  </header>
+        <header class="fade-in slide-down">
+          <h1>Funding & Investment</h1>
+          <p class="fade-in-delay">Be part of the next multitrillion-dollar company solving the world's exestintial challenges</p>
+        </header>
 
-  <section class="fade-in fade-in-delay-1 slide-left">
-    <h2>Seeking Strategic Funding</h2>
-    <p>
-      Qemb is open to investors, venture capital firms, and grant funders who share our vision of a better world powered by frontier technologies.
-    </p>
-  </section>
+        <section class="fade-in fade-in-delay-1 slide-left">
+          <h2>Seeking Strategic Funding</h2>
+          <p>
+            Qemb is open to investors, venture capital firms, and grant funders who share our vision of a better world powered by frontier technologies.
+          </p>
+        </section>
 
-  <section class="fade-in fade-in-delay-2 slide-left">
-    <h2>Impact Investment</h2>
-    <p>
-      Your investment helps accelerate AI and quantum solutions in cancer detection, climate modeling, and food security.
-      We are building for scale, sustainability, and global impact.
-    </p>
-  </section>
+        <section class="fade-in fade-in-delay-2 slide-left">
+          <h2>Impact Investment</h2>
+          <p>
+            Your investment helps accelerate AI and quantum solutions in cancer detection, climate modeling, and food security.
+            We are building for scale, sustainability, and global impact.
+          </p>
+        </section>
 
-  <section class="fade-in fade-in-delay-3 slide-left">
-    <h2>Why Invest in Qemb?</h2>
-    <ul>
-      <li> Proven research pipeline in AI/Quantum</li>
-      <li> High-impact sectors: Health, Climate, Agriculture</li>
-      <li> Scalable tech infrastructure and global vision</li>
-      <li>Talented multidisciplinary team</li>
-    </ul>
-  </section>
-</section>
-
+        <section class="fade-in fade-in-delay-3 slide-left">
+          <h2>Why Invest in Qemb?</h2>
+          <ul>
+            <li> Proven research pipeline in AI/Quantum</li>
+            <li> High-impact sectors: Health, Climate, Agriculture</li>
+            <li> Scalable tech infrastructure and global vision</li>
+            <li>Talented multidisciplinary team</li>
+          </ul>
+        </section>
+      </section>
 
       <section id="contact" class="content-section" style="display:none;">
-  <header class="fade-in slide-down">
-    <h1>Contact Qemb</h1>
-    <p class="fade-in-delay">We're excited to collaborate with you on the future of technology</p>
-  </header>
+        <header class="fade-in slide-down">
+          <h1>Contact Qemb</h1>
+          <p class="fade-in-delay">We're excited to collaborate with you on the future of technology</p>
+        </header>
 
-  <section class="fade-in fade-in-delay-1 slide-left">
-    <h2>Reach Out</h2>
-    <p>We're open to partnerships, research collaborations, hiring inquiries, and funding opportunities.</p>
-    <p>Email us directly at: <a href="mailto:qembai@gmail.com">qemb@gmail.com</a></p>
-    <p>Call or WhatsApp us: <strong>+254 114 924 399</strong></p>
-  </section>
+        <section class="fade-in fade-in-delay-1 slide-left">
+          <h2>Reach Out</h2>
+          <p>We're open to partnerships, research collaborations, hiring inquiries, and funding opportunities.</p>
+          <p>Email us directly at: <a href="mailto:qembai@gmail.com">qemb@gmail.com</a></p>
+          <p>Call or WhatsApp us: <strong>+254 114 924 399</strong></p>
+        </section>
 
-  <section class="fade-in fade-in-delay-2 slide-left">
-    <h2>Mailing Address</h2>
-    <p>Qemb.AI Innovations<br />Nairobi, Kenya<br />P.O. Box 12345-00100</p>
-  </section>
+        <section class="fade-in fade-in-delay-2 slide-left">
+          <h2>Mailing Address</h2>
+          <p>Qemb.AI Innovations<br />Nairobi, Kenya<br />P.O. Box 12345-00100</p>
+        </section>
 
-  <section class="fade-in fade-in-delay-3 slide-left">
-    <h2>Follow Us</h2>
-    <p>Coming soon: social media handles, updates, and news from our frontier projects.</p>
-  </section>
-</section>
-
+        <section class="fade-in fade-in-delay-3 slide-left">
+          <h2>Follow Us</h2>
+          <p>Coming soon: social media handles, updates, and news from our frontier projects.</p>
+        </section>
+      </section>
     </main>
 
     <!-- Footer -->
@@ -363,361 +379,186 @@
         <p>Innovating for Health, Climate, Agriculture, and Beyond.</p>
     </footer>
 
+    <!-- JavaScript -->
+    <script>
+    // Global variable for the Gradio client
+    let gradioAppClient = null;
+    let isClientInitializing = false;
 
-<!-- Script to handle API call -->
-<style>
-  /* Spinner animation */
-  .spinner {
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid #3498db;
-    border-radius: 50%;
-    width: 18px;
-    height: 18px;
-    animation: spin 1s linear infinite;
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 8px;
-  }
+    // Wait for DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize the Gradio client
+      initializeGradioClient();
+      
+      // Set up event listeners
+      setupEventListeners();
+      
+      // Initialize with home section
+      showSection('home');
+    });
 
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-</style>
-
-<script type="module">
-    import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js";
-    let workClient;
-  (async () => {
-    workClient = await client("Kibakimuoki/Qemb.AI-yolo-vit-gradio");
-  })();
-
-  const inputWork = document.getElementById("input-image-work");
-  const btnWork = document.getElementById("run-btn-work");
-  const outputWork = document.getElementById("output-image-work");
-
-  // Prediction label
-  const labelWork = document.createElement("p");
-  labelWork.id = "output-label-work";
-  labelWork.style.fontWeight = "bold";
-  labelWork.style.marginTop = "10px";
-  outputWork.insertAdjacentElement("afterend", labelWork);
-
-  // Loading wrapper with spinner + text
-  const loadingWork = document.createElement("div");
-  loadingWork.id = "loading-text-work";
-  loadingWork.style.color = "blue";
-  loadingWork.style.display = "none";
-  loadingWork.innerHTML = `<span class="spinner"></span> Running detection…`;
-  btnWork.insertAdjacentElement("afterend", loadingWork);
-
-  btnWork.addEventListener("click", async () => {
-    if (!inputWork.files[0]) return alert("Please upload an image first!");
-    try {
-      // Show spinner + disable button
-      loadingWork.style.display = "block";
-      btnWork.disabled = true;
-      btnWork.style.opacity = "0.6";
-      btnWork.style.cursor = "not-allowed";
-
-      // Clear previous output
-      labelWork.textContent = "";
-      outputWork.src = "";
-
-      // Call Hugging Face Space
-      const response = await workClient.predict("run_yolo_vit", [inputWork.files[0]]);
-      console.log("Work response:", response);
-
-      if (response && response.data) {
-        outputWork.src = response.data[0].url || response.data[0];
-        const label = response.data[1];
-        labelWork.textContent = "Prediction: " + (typeof label === "string" ? label : JSON.stringify(label));
-      } else {
-        labelWork.textContent = "No output returned.";
+    // Initialize Gradio client
+    async function initializeGradioClient() {
+      if (isClientInitializing) return;
+      
+      isClientInitializing = true;
+      try {
+        // Load the Gradio client from local file to avoid CORS
+        const script = document.createElement('script');
+        script.src = 'js/gradio-client.min.js';
+        script.onload = async function() {
+          try {
+            const spaceUrl = "Kibakimuoki/Qemb.AI-yolo-vit-gradio";
+            gradioAppClient = await gradioClient(spaceUrl);
+            console.log("Gradio client initialized successfully");
+          } catch (error) {
+            console.error("Failed to initialize Gradio client:", error);
+            showError("AI service temporarily unavailable. Please try again later.");
+          }
+          isClientInitializing = false;
+        };
+        script.onerror = function() {
+          console.error("Failed to load Gradio client library");
+          showError("Failed to load AI capabilities. Please check your internet connection.");
+          isClientInitializing = false;
+        };
+        document.head.appendChild(script);
+      } catch (error) {
+        console.error("Error initializing Gradio client:", error);
+        isClientInitializing = false;
       }
-    } catch (err) {
-      console.error(err);
-      labelWork.textContent = "Error running detection. See console.";
-    } finally {
-      // Hide spinner + re-enable button
-      loadingWork.style.display = "none";
-      btnWork.disabled = false;
-      btnWork.style.opacity = "1";
-      btnWork.style.cursor = "pointer";
     }
-  });
-</script>
- 
 
-  // --- Work App ---
-  <script type="module">
-  import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js";
-
-  let workClient;
-
-  (async () => {
-    workClient = await client("Kibakimuoki/Qemb.AI-yolo-vit-gradio");
-  })();
-
-  const inputWork = document.getElementById("input-image-work");
-  const btnWork = document.getElementById("run-btn-work");
-  const outputWork = document.getElementById("output-image-work");
-
-  // Label under image
-  const labelWork = document.createElement("p");
-  labelWork.id = "output-label-work";
-  labelWork.style.fontWeight = "bold";
-  labelWork.style.marginTop = "10px";
-  outputWork.insertAdjacentElement("afterend", labelWork);
-
-  btnWork.addEventListener("click", async () => {
-    if (!inputWork.files[0]) return alert("Please upload an image first!");
-    try {
-      const response = await workClient.predict("/run_yolo_vit", [inputWork.files[0]]);
-      console.log("Work response:", response);
-
-      if (response && response.data) {
-        // Show YOLO detection image
-        outputWork.src = response.data[0].url || response.data[0];
-
-        // Show ViT classification label
-        const label = response.data[1];
-        if (typeof label === "string") {
-          labelWork.textContent = "Prediction: " + label;
-        } else {
-          labelWork.textContent = "Prediction: " + JSON.stringify(label);
+    // Show error message
+    function showError(message) {
+      // Remove any existing error messages
+      const existingErrors = document.querySelectorAll('.error-message');
+      existingErrors.forEach(error => error.remove());
+      
+      const errorDiv = document.createElement('div');
+      errorDiv.className = 'error-message';
+      errorDiv.textContent = message;
+      document.querySelector('main').prepend(errorDiv);
+      
+      // Auto-remove after 5 seconds
+      setTimeout(() => {
+        if (errorDiv.parentNode) {
+          errorDiv.parentNode.removeChild(errorDiv);
         }
-      } else {
-        labelWork.textContent = "No output returned.";
-      }
-    } catch (err) {
-      console.error(err);
-      labelWork.textContent = "Error running detection. See console.";
+      }, 5000);
     }
-  });
-</script>
 
-  // Work App
-  <!-- Import Gradio JS client -->
-
-
-<script type="module">
-  import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js";
-
-  const inputWork = document.getElementById("input-image-work");
-  const btnWork = document.getElementById("run-btn-work");
-  const outputWork = document.getElementById("output-image-work");
-
-  async function runDetection(file) {
-    // Get client from global gradio object
-    const app = await window.gradio.client("Kibakimuoki/Qemb.AI-yolo-vit-gradio");
-
-    // Call your exposed endpoint from app.py
-    const result = await app.predict("/run_yolo_vit", [file]);
-
-    // result.data[0] is the base64 image
-    // result.data[1] is the ViT label
-    outputWork.src = result.data[0];
-    console.log("ViT Prediction:", result.data[1]);
-  }
-
-  btnWork.addEventListener("click", () => {
-    const file = inputWork.files[0];
-    if (file) {
-      runDetection(file);
-    } else {
-      alert("Please upload an image first!");
-    }
-  });
-</script>
-
-  
-<script type="module">
- import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js";
-
-  // ✅ Wrapper function for connecting to a Hugging Face Space
-  async function connectToModel(spaceUrl) {
-    try {
-      const modelClient = await client(spaceUrl);
-      console.log("✅ Connected to:", spaceUrl);
-      return modelClient;
-    } catch (error) {
-      console.error("❌ Failed to connect:", error);
-      return null;
-    }
-  }
-
-  // Example: connect to your YOLO-ViT Gradio Space
-
-
-
-
- <script type="module">
-  import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js";
-  
-   const spaceUrl = "https://kibakimuoki-qemb-ai-yolo-vit-gradio.hf.space/";
-
-  (async () => {
-    try {
-      const workClient = await client(spaceUrl);
-      console.log("Connected:", workClient);
-    } catch (err) {
-      console.error("Connection failed:", err);
-    }
-     
-  // DOM elements for work section
-  const inputWork = document.getElementById("input-image-work");
-  const btnWork = document.getElementById("run-btn-work");
-  const outputWork = document.getElementById("output-image-work");
-  
-  // Create prediction label
-  const labelWork = document.createElement("p");
-  labelWork.id = "output-label-work";
-  labelWork.style.fontWeight = "bold";
-  labelWork.style.marginTop = "10px";
-  outputWork.parentNode.insertBefore(labelWork, outputWork.nextSibling);
-  
-  // Create loading indicator
-  const loadingWork = document.createElement("div");
-  loadingWork.id = "loading-text-work";
-  loadingWork.style.color = "blue";
-  loadingWork.style.display = "none";
-  loadingWork.innerHTML = `Loading...`;
-  btnWork.parentNode.insertBefore(loadingWork, btnWork.nextSibling);
-
-  let workClient = null;
-
-  // Initialize client
-  async function initializeClient() {
-    try {
-      workClient = await client("Kibakimuoki/Qemb.AI-yolo-vit-gradio");
-      console.log("Gradio client initialized successfully");
-    } catch (error) {
-      console.error("Failed to initialize Gradio client:", error);
-    }
-  }
-
-  // Initialize on page load
-  initializeClient();
-
-  btnWork.addEventListener("click", async () => {
-    if (!inputWork.files[0]) {
-      alert("Please upload an image first!");
-      return;
-    }
-    
-    try {
-      // Show loading, disable button
-      loadingWork.style.display = "block";
-      btnWork.disabled = true;
+    // Set up all event listeners
+    function setupEventListeners() {
+      // Navigation
+      const navLinks = document.querySelectorAll('.nav-link, .sector-card, .btn-primary, .btn-secondary');
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const sectionId = this.getAttribute('data-section');
+          showSection(sectionId);
+        });
+      });
       
-      // Clear previous results
-      outputWork.src = "";
-      labelWork.textContent = "";
-      
-      if (!workClient) {
-        await initializeClient();
+      // Detection button for work section
+      const detectBtn = document.getElementById('run-btn-work');
+      if (detectBtn) {
+        detectBtn.addEventListener('click', runDetectionWork);
       }
       
-      const response = await workClient.predict("/run_yolo_vit", [inputWork.files[0]]);
-      
-      if (response && response.data) {
-        outputWork.src = response.data[0];
-        labelWork.textContent = "Prediction: " + 
-          (typeof response.data[1] === "string" ? 
-           response.data[1] : JSON.stringify(response.data[1]));
+      // Detection button for health section
+      const healthDetectBtn = document.getElementById('run-btn-health');
+      if (healthDetectBtn) {
+        healthDetectBtn.addEventListener('click', runDetectionHealth);
       }
-    } catch (err) {
-      console.error("Prediction error:", err);
-      labelWork.textContent = "Error: " + err.message;
-    } finally {
-      // Hide loading, enable button
-      loadingWork.style.display = "none";
-      btnWork.disabled = false;
     }
-  });
-</script>
 
+    // Show/hide sections
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll('.content-section');
+      sections.forEach(sec => sec.style.display = 'none');
+      
+      const targetSection = document.getElementById(sectionId);
+      if (targetSection) {
+        targetSection.style.display = 'block';
+        window.scrollTo(0, 0);
+      }
+      
+      // Update active nav links
+      const navLinks = document.querySelectorAll('.nav-link');
+      navLinks.forEach(link => link.classList.remove('active'));
+      document.querySelectorAll(`[data-section="${sectionId}"]`).forEach(link => {
+        link.classList.add('active');
+      });
+    }
+
+    // Detection function for work section
+    async function runDetectionWork() {
+      const inputWork = document.getElementById('input-image-work');
+      const outputWork = document.getElementById('output-image-work');
+      const btnWork = document.getElementById('run-btn-work');
+      const loadingWork = document.getElementById('loading-work');
+      const labelWork = document.getElementById('output-label-work');
+      
+      if (!inputWork || !inputWork.files[0]) {
+        alert("Please upload an image first!");
+        return;
+      }
+      
+      // Check if client is available
+      if (!gradioAppClient) {
+        alert("AI service is still initializing. Please wait a moment and try again.");
+        return;
+      }
+      
+      try {
+        // UI updates
+        btnWork.disabled = true;
+        btnWork.textContent = "Processing...";
+        if (loadingWork) loadingWork.style.display = "block";
         
-<script>
-// Navigation handling
-const navLinks = document.querySelectorAll('.nav-link, .sector-card, .btn-primary, .btn-secondary');
-const sections = document.querySelectorAll('.content-section');
-
-function showSection(sectionId) {
-  sections.forEach(sec => sec.style.display = 'none'); // hide all
-  const target = document.getElementById(sectionId);
-  if (target) target.style.display = 'block'; // show selected
-  // update active state
-  navLinks.forEach(link => link.classList.remove('active'));
-  document.querySelectorAll(`[data-section="${sectionId}"]`).forEach(link => link.classList.add('active'));
-}
-
-// attach events
-navLinks.forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    const sectionId = link.getAttribute('data-section');
-    showSection(sectionId);
-  });
-});
-
-// Show home by default
-showSection('home');
-</script>
-
-<div>
-  <h2>YOLO + ViT Detection App</h2>
-  
-  <!-- Upload image -->
-  <input type="file" id="imgInput" />
-  
-  <!-- Run button -->
-  <button id="runBtn">Run Detection</button>
-  
-  <!-- Outputs -->
-  <div>
-    <h3>Detection Result</h3>
-    <img id="outputImage" alt="Detections will appear here" style="max-width:400px; display:block;"/>
-    <h3>ViT Prediction</h3>
-    <div id="outputLabel"></div>
-  </div>
-</div>
-
-
-<script type="module">
-  import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js";
-
-  const spaceUrl = "https://kibakimuoki-qemb-ai-yolo-vit-gradio.hf.space";
-  let workClient = null;
-
-  // DOM elements
-  const inputWork = document.getElementById("input-image-work");
-  const btnWork = document.getElementById("run-btn-work");
-  const outputWork = document.getElementById("output-image-work");
-
-  btnWork.addEventListener("click", async () => {
-    if (!workClient) {
-      workClient = await client(spaceUrl);
+        if (outputWork) {
+          outputWork.src = "";
+          outputWork.style.display = "none";
+        }
+        
+        if (labelWork) {
+          labelWork.textContent = "";
+        }
+        
+        // Run detection
+        const response = await gradioAppClient.predict("/run_yolo_vit", [inputWork.files[0]]);
+        
+        // Display results
+        if (response && response.data && outputWork) {
+          outputWork.src = response.data[0];
+          outputWork.style.display = "block";
+          
+          // Show prediction label if available
+          if (response.data[1] && labelWork) {
+            const prediction = typeof response.data[1] === 'string' 
+              ? response.data[1] 
+              : JSON.stringify(response.data[1]);
+            labelWork.textContent = "Prediction: " + prediction;
+          }
+        }
+      } catch (error) {
+        console.error("Detection error:", error);
+        alert("Error processing image: " + error.message);
+      } finally {
+        // Reset UI
+        if (btnWork) {
+          btnWork.disabled = false;
+          btnWork.textContent = "Run Detection";
+        }
+        if (loadingWork) loadingWork.style.display = "none";
+      }
     }
 
-    const file = inputWork.files[0];
-    if (!file) {
-      alert("Please upload an image first.");
-      return;
+    // Detection function for health section
+    async function runDetectionHealth() {
+      alert("Health detection feature is coming soon! Currently in development.");
     }
-
-    try {
-      // Adjust the endpoint to match your Gradio function name
-      const result = await workClient.predict("/run_yolo_vit", [file]);
-
-      console.log("✅ Prediction:", result);
-      outputWork.src = result.data[0]; // assumes first output is image
-    } catch (err) {
-      console.error("❌ Prediction error:", err);
-    }
-  });
-</script>
-
+    </script>
 </body>
 </html>
