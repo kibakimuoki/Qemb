@@ -536,7 +536,7 @@
   
 <script type="module">
   import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client@latest";
-  const workClient = new Client("https://huggingface.co/spaces/Kibakimuoki/Qemb.AI-yolo-vit-gradio");
+  const workClient = await client("https://huggingface.co/spaces/Kibakimuoki/Qemb.AI-yolo-vit-gradio");
   const inputWork = document.getElementById("input-image-work");
   const btnWork = document.getElementById("run-btn-work");
   const outputWork = document.getElementById("output-image-work");
