@@ -550,8 +550,15 @@
   }
 
   // Example: connect to your YOLO-ViT Gradio Space
+<script type="module">
+  import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js";
+
   const spaceUrl = "https://kibakimuoki-qemb-ai-yolo-vit-gradio.hf.space";
-  workClient = await client(spaceUrl);
+  const workClient = await client(spaceUrl);
+
+  console.log("Connected:", workClient);
+ </script>
+
 
 
   // DOM elements
