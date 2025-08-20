@@ -576,7 +576,7 @@ showSection('home');
   import { Client } from "https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js";
 
   document.getElementById("runBtn").addEventListener("click", async () => {
-    const client = await Client.connect("https://<your-space-name>.hf.space/");
+    const client = await Client.connect("https://huggingface.co/spaces/Kibakimuoki/Qemb.AI-yolo-vit-gradio")
     const fileInput = document.getElementById("imgInput");
     const file = fileInput.files[0];
     
