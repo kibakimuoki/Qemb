@@ -502,6 +502,37 @@
 
 <script>
   // Work App
+  <!-- Import Gradio JS client -->
+<script src="https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js"></script>
+
+<script>
+  const inputWork = document.getElementById("input-image-work");
+  const btnWork = document.getElementById("run-btn-work");
+  const outputWork = document.getElementById("output-image-work");
+
+  async function runDetection(file) {
+    // Get client from global gradio object
+    const app = await window.gradio.client("Kibakimuoki/Qemb.AI-yolo-vit-gradio");
+
+    // Call your exposed endpoint from app.py
+    const result = await app.predict("/run_yolo_vit", [file]);
+
+    // result.data[0] is the base64 image
+    // result.data[1] is the ViT label
+    outputWork.src = result.data[0];
+    console.log("ViT Prediction:", result.data[1]);
+  }
+
+  btnWork.addEventListener("click", () => {
+    const file = inputWork.files[0];
+    if (file) {
+      runDetection(file);
+    } else {
+      alert("Please upload an image first!");
+    }
+  });
+</script>
+
   const workClient = new Client("https://huggingface.co/spaces/Kibakimuoki/Qemb.AI-yolo-vit-gradio");
   const inputWork = document.getElementById("input-image-work");
   const btnWork = document.getElementById("run-btn-work");
