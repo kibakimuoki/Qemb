@@ -386,9 +386,7 @@
 </style>
 
 <script type="module">
-  import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client@latest";
-
-  let workClient;
+    import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js";
 
   (async () => {
     workClient = await client("Kibakimuoki/Qemb.AI-yolo-vit-gradio");
@@ -453,7 +451,7 @@
 
   // --- Work App ---
   <script type="module">
-  import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client@latest";
+  import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js";
 
   let workClient;
 
@@ -504,7 +502,7 @@
 
 
 <script type="module">
-  import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client@latest";
+  import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js";
 
   const inputWork = document.getElementById("input-image-work");
   const btnWork = document.getElementById("run-btn-work");
@@ -535,7 +533,7 @@
 
   
 <script type="module">
-  import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client@latest";
+ import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js";
 
   // ✅ Wrapper function for connecting to a Hugging Face Space
   async function connectToModel(spaceUrl) {
@@ -641,7 +639,7 @@ showSection('home');
 
 
 <script type="module">
-  import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client@latest";
+  import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js";
 
   const spaceUrl = "https://kibakimuoki-qemb-ai-yolo-vit-gradio.hf.space";
   let workClient = null;
