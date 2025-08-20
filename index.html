@@ -501,9 +501,11 @@
 
   // Work App
   <!-- Import Gradio JS client -->
-<script src="https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js"></script>
 
-<script>
+
+<script type="module">
+  import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client@latest";
+
   const inputWork = document.getElementById("input-image-work");
   const btnWork = document.getElementById("run-btn-work");
   const outputWork = document.getElementById("output-image-work");
@@ -531,6 +533,9 @@
   });
 </script>
 
+  
+<script type="module">
+  import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client@latest";
   const workClient = new Client("https://huggingface.co/spaces/Kibakimuoki/Qemb.AI-yolo-vit-gradio");
   const inputWork = document.getElementById("input-image-work");
   const btnWork = document.getElementById("run-btn-work");
