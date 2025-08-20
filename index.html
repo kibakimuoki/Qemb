@@ -387,7 +387,7 @@
 
 <script type="module">
     import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js";
-
+    let workClient;
   (async () => {
     workClient = await client("Kibakimuoki/Qemb.AI-yolo-vit-gradio");
   })();
