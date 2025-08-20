@@ -550,8 +550,9 @@
   }
 
   // Example: connect to your YOLO-ViT Gradio Space
-  const spaceUrl = "https://huggingface.co/spaces/Kibakimuoki/Qemb.AI-yolo-vit-gradio";
-  let workClient = null;
+  const spaceUrl = "https://kibakimuoki-qemb-ai-yolo-vit-gradio.hf.space";
+  workClient = await client(spaceUrl);
+
 
   // DOM elements
   const inputWork = document.getElementById("input-image-work");
@@ -634,29 +635,38 @@ showSection('home');
 
 
 <script type="module">
-  import { Client } from "https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js";
+  import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client@latest";
 
-  document.getElementById("runBtn").addEventListener("click", async () => {
-    const client = await Client.connect("https://huggingface.co/spaces/Kibakimuoki/Qemb.AI-yolo-vit-gradio")
-    const fileInput = document.getElementById("imgInput");
-    const file = fileInput.files[0];
-    
+  const spaceUrl = "https://kibakimuoki-qemb-ai-yolo-vit-gradio.hf.space";
+  let workClient = null;
+
+  // DOM elements
+  const inputWork = document.getElementById("input-image-work");
+  const btnWork = document.getElementById("run-btn-work");
+  const outputWork = document.getElementById("output-image-work");
+
+  btnWork.addEventListener("click", async () => {
+    if (!workClient) {
+      workClient = await client(spaceUrl);
+    }
+
+    const file = inputWork.files[0];
     if (!file) {
-      alert("Please upload an image first!");
+      alert("Please upload an image first.");
       return;
     }
 
     try {
-      const result = await client.predict("/run_yolo_vit", [file]);
-      document.getElementById("outputImage").src = result.data[0];
-      document.getElementById("outputLabel").innerText = result.data[1];
+      // Adjust the endpoint to match your Gradio function name
+      const result = await workClient.predict("/run_yolo_vit", [file]);
+
+      console.log("✅ Prediction:", result);
+      outputWork.src = result.data[0]; // assumes first output is image
     } catch (err) {
-      console.error("Prediction error:", err);
+      console.error("❌ Prediction error:", err);
     }
   });
 </script>
-
-
 
 </body>
 </html>
