@@ -794,13 +794,22 @@
                });
 
                 console.log("Detection response:", result);
-                if (result && result.data && result.data.length >= 2) {
-                    outputElement.src = result.data[0];
-                    outputElement.style.display = "block";
-                    labelElement.textContent = result.data[1];
-                } else {
-                    labelElement.textContent = "No detections returned.";
-        }
+              if (result && result.data && result.data.length >= 2) {
+    const outputData = result.data[0];
+
+    // Check if it's an object with base64 data
+    if (typeof outputData === "object" && outputData.data) {
+        outputElement.src = "data:image/png;base64," + outputData.data;
+    } else {
+        outputElement.src = outputData; // fallback if it's already a URL string
+    }
+    
+    outputElement.style.display = "block";
+    labelElement.textContent = result.data[1];
+} else {
+    labelElement.textContent = "No detections returned.";
+}
+
 
     } catch (error) {
         console.error("Detection error:", error);
