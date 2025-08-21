@@ -790,7 +790,7 @@
                 // Run prediction using the standard approach
                 // Gradio client automatically handles the endpoint mapping
                const result = await client.predict("/run_yolo_vit", {
-                  input_data: [file]   // match Gradio input order
+                 img: file
                });
 
                 console.log("Detection response:", response);
