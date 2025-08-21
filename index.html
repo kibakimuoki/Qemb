@@ -766,66 +766,51 @@
         const loadingHealth = document.getElementById("loading-text-health");
         
         // Function to run detection
-        async function runDetection(client, file, outputElement, labelElement, loadingElement) {
-            if (!client) {
-                alert("AI service is not available. Please try again later.");
-                return;
-            }
-            
-            if (!file) {
-                alert("Please upload an image first!");
-                return;
-            }
-            
-            try {
-                // Show loading state
-                loadingElement.style.display = "block";
-                outputElement.style.display = "none";
-                labelElement.textContent = "";
-                
-                // For Gradio spaces, we typically use the first available endpoint
-                // Let's try the standard approach
-                console.log("Client config:", client.config);
-                
-                // Run prediction using the standard approach
-                // Gradio client automatically handles the endpoint mapping
-               const result = await client.predict("/run_yolo_vit", {
-                 img: file
-               });
-
-                console.log("Detection response:", result);
-              if (result && result.data && result.data.length >= 2) {
-    const outputData = result.data[0];
-
-    // Check if it's an object with base64 data
+       async function runDetection(client, file, outputElement, labelElement, loadingElement, isImageOutput = true) {
+    if (!client) {
+        alert("AI service is not available. Please try again later.");
+        return;
+    }
     
+    if (!file) {
+        alert("Please upload an image first!");
+        return;
+    }
+    
+    try {
+        loadingElement.style.display = "block";
+        outputElement.style.display = "none";
+        labelElement.textContent = "";
 
-if (typeof outputData === "object" && outputData.data) {
-    // base64 string → display in <img>
-    outputElement.src = "data:image/png;base64," + outputData.data;
-} else if (typeof outputData === "string") {
-    // fallback if it's a direct URL
-    outputElement.src = outputData;
-} else {
-    console.error("Unexpected output data format:", outputData);
-    labelElement.textContent = "Error: Invalid output data format.";
-}
+        const result = await client.predict("/run_yolo_vit", { img: file });
+        console.log("Detection response:", result);
 
-outputElement.style.display = "block";
-labelElement.textContent = result.data[1] || "No label returned";
-
-
+        if (isImageOutput) {
+            // YOLO → image output
+            const outputData = result.data[0];
+            if (typeof outputData === "object" && outputData.data) {
+                outputElement.src = "data:image/png;base64," + outputData.data;
+            } else if (typeof outputData === "string") {
+                outputElement.src = outputData;
+            } else {
+                console.error("Unexpected output data format:", outputData);
+                labelElement.textContent = "Error: Invalid output format for image.";
+            }
+            outputElement.style.display = "block";
+            labelElement.textContent = result.data[1] || "";
+        } else {
+            // ViT → text/classification output
+            labelElement.textContent = result.data[0] || "No label returned";
+        }
 
     } catch (error) {
         console.error("Detection error:", error);
         labelElement.textContent = "Error running detection. See console.";
-                
-            } finally {
-                // Hide loading state
-                loadingElement.style.display = "none";
-            }
-        }
-        
+    } finally {
+        loadingElement.style.display = "none";
+    }
+}
+
         // Event listeners for work app
         btnWork.addEventListener("click", () => {
             runDetection(workClient, inputWork.files[0], outputWork, labelWork, loadingWork);
