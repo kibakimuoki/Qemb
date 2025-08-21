@@ -785,14 +785,18 @@
         const result = await client.predict("/run_yolo_vit", { img: file });
         console.log("Detection response:", result);
 
+        if (!result || !result.data) {
+            throw new Error("No data returned from AI service");
+        }
+
         if (isImageOutput) {
             const outputData = result.data[0];
 
-            if (outputData.url) {
+            if (outputData && outputData.url) {
                 outputElement.src = outputData.url;
             } else if (typeof outputData === "string") {
                 outputElement.src = outputData;
-            } else if (outputData.data) {
+            } else if (outputData && outputData.data) {
                 outputElement.src = "data:image/png;base64," + outputData.data;
             } else {
                 console.error("Unexpected output data format:", outputData);
@@ -801,12 +805,16 @@
 
             outputElement.style.display = "block";
 
-            // Handle possible object for label
+            // Handle label
             const labelData = result.data[1];
-            if (typeof labelData === "string") {
-                labelElement.textContent = labelData;
-            } else if (labelData?.label) {
-                labelElement.textContent = labelData.label + (labelData.confidence ? ` (${labelData.confidence.toFixed(2)})` : "");
+            if (labelData) {
+                if (typeof labelData === "string") {
+                    labelElement.textContent = labelData;
+                } else if (labelData.label) {
+                    labelElement.textContent = labelData.label + (labelData.confidence ? ` (${labelData.confidence.toFixed(2)})` : "");
+                } else {
+                    labelElement.textContent = "";
+                }
             } else {
                 labelElement.textContent = "";
             }
@@ -814,10 +822,14 @@
         } else {
             // ViT classification → text output
             const classification = result.data[0];
-            if (typeof classification === "string") {
-                labelElement.textContent = classification;
-            } else if (classification?.label) {
-                labelElement.textContent = classification.label + (classification.confidence ? ` (${classification.confidence.toFixed(2)})` : "");
+            if (classification) {
+                if (typeof classification === "string") {
+                    labelElement.textContent = classification;
+                } else if (classification.label) {
+                    labelElement.textContent = classification.label + (classification.confidence ? ` (${classification.confidence.toFixed(2)})` : "");
+                } else {
+                    labelElement.textContent = "No label returned";
+                }
             } else {
                 labelElement.textContent = "No label returned";
             }
@@ -831,15 +843,6 @@
     }
 }
 
-      
-
-     catch (error) {
-        console.error("Detection error:", error);
-        labelElement.textContent = "Error running detection. See console.";
-    } finally {
-        loadingElement.style.display = "none";
-    }
-}
 
         // Event listeners for work app
         btnWork.addEventListener("click", () => {
