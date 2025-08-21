@@ -720,9 +720,7 @@
         <p>&copy; 2025 Qemb. All Rights Reserved.</p>
         <p>Innovating for Health, Climate, Agriculture, and Beyond.</p>
     </footer>
-
     <!-- JavaScript -->
-       <!-- JavaScript -->
     <script type="module">
         // Import Gradio client
         import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client@latest/dist/index.min.js";
@@ -785,64 +783,68 @@
                 outputElement.style.display = "none";
                 labelElement.textContent = "";
                 
-                // Check available endpoints and use the correct one
-                let endpoint = "/predict";
-                let paramIndex = 0;
+                // For Gradio spaces, we typically use the first available endpoint
+                // Let's try the standard approach
+                console.log("Client config:", client.config);
                 
-                // Try to find the correct endpoint
-                if (client.config && client.config.dependencies) {
-                    for (const dep of client.config.dependencies) {
-                        if (dep.targets && dep.targets.length > 0) {
-                            endpoint = dep.targets[0];
-                            break;
-                        }
-                    }
-                }
-                
-                console.log("Using endpoint:", endpoint);
-                
-                // Run prediction
-                const response = await client.predict(endpoint, [file]);
+                // Run prediction using the standard approach
+                // Gradio client automatically handles the endpoint mapping
+                const response = await client.predict("/predict", [file]);
                 console.log("Detection response:", response);
                 
                 if (response && response.data) {
-                    // Show output image (assuming first output is image)
-                    if (response.data[0] && typeof response.data[0] === 'object' && response.data[0].url) {
-                        outputElement.src = response.data[0].url;
-                    } else if (typeof response.data[0] === 'string') {
-                        outputElement.src = response.data[0];
-                    } else {
-                        outputElement.src = URL.createObjectURL(new Blob([response.data[0]]));
-                    }
-                    outputElement.style.display = "block";
-                    
-                    // Show label (assuming second output is label)
-                    if (response.data[1]) {
-                        const label = response.data[1];
-                        labelElement.textContent = "Prediction: " + (typeof label === "string" ? label : JSON.stringify(label));
-                    } else if (response.data[0] && typeof response.data[0] === 'string') {
-                        // If only one output, it might be the image URL and we need to get label differently
+                    // Handle different response formats
+                    if (Array.isArray(response.data)) {
+                        // Multiple outputs (image and label)
+                        if (response.data[0]) {
+                            // First output is usually the image
+                            if (typeof response.data[0] === 'string') {
+                                outputElement.src = response.data[0];
+                            } else if (response.data[0].url) {
+                                outputElement.src = response.data[0].url;
+                            } else {
+                                // Try to create URL from data
+                                outputElement.src = URL.createObjectURL(response.data[0]);
+                            }
+                            outputElement.style.display = "block";
+                        }
+                        
+                        if (response.data[1]) {
+                            // Second output is usually the label
+                            const label = response.data[1];
+                            labelElement.textContent = "Prediction: " + 
+                                (typeof label === "string" ? label : JSON.stringify(label));
+                        } else {
+                            labelElement.textContent = "Detection completed successfully!";
+                        }
+                    } else if (typeof response.data === 'string') {
+                        // Single string output (might be image URL)
+                        outputElement.src = response.data;
+                        outputElement.style.display = "block";
                         labelElement.textContent = "Detection completed successfully!";
+                    } else {
+                        labelElement.textContent = "Unexpected response format from model.";
                     }
                 } else {
                     labelElement.textContent = "No output returned from the model.";
                 }
             } catch (err) {
                 console.error("Prediction error:", err);
-                labelElement.textContent = "Error running detection. Please try again with a different image.";
                 
-                // Fallback: try the most common endpoint names
-                if (err.message.includes("no endpoint")) {
-                    try {
-                        const fallbackResponse = await client.predict("/predict", [file]);
-                        if (fallbackResponse && fallbackResponse.data) {
-                            outputElement.src = fallbackResponse.data[0];
-                            outputElement.style.display = "block";
-                            labelElement.textContent = "Detection completed successfully!";
-                        }
-                    } catch (fallbackError) {
-                        console.error("Fallback also failed:", fallbackError);
+                // Try alternative approaches if the first one fails
+                try {
+                    // Alternative approach: use the client's submit method directly
+                    const result = await client.submit(0, [file]);
+                    console.log("Alternative approach result:", result);
+                    
+                    if (result && result.data) {
+                        outputElement.src = result.data[0];
+                        outputElement.style.display = "block";
+                        labelElement.textContent = "Detection completed successfully!";
                     }
+                } catch (fallbackError) {
+                    console.error("Fallback also failed:", fallbackError);
+                    labelElement.textContent = "Error running detection. Please check console for details.";
                 }
             } finally {
                 // Hide loading state
@@ -912,5 +914,6 @@
         // Animation on scroll
         window.addEventListener('scroll', animateOnScroll);
     </script>
+  
 </body>
 </html>
