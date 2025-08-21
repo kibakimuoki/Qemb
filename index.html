@@ -4,7 +4,8 @@
 
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.png" />
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net;">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://gradio.app;">
+
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Qemb – Leading the Future with AI, Quantum & Innovation" />
@@ -723,7 +724,8 @@
     <!-- JavaScript -->
     <script type="module">
         // Import Gradio client
-        import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js";
+       import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client@latest/dist/index.min.js";
+
         
         // Initialize clients
         let workClient = null;
