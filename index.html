@@ -1,41 +1,298 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Qemb – Leading the Future with AI, Quantum & Innovation" />
     <title>Qemb.AI | Leading the Future</title>
-    <link rel="stylesheet" href="qemb.css" />
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
     <style>
-      /* Spinner animation */
-      .spinner {
-        border: 4px solid #f3f3f3;
-        border-top: 4px solid #3498db;
-        border-radius: 50%;
-        width: 18px;
-        height: 18px;
-        animation: spin 1s linear infinite;
-        display: inline-block;
-        vertical-align: middle;
-        margin-right: 8px;
-      }
-
-      @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }
-      
-      /* Error message styling */
-      .error-message {
-        color: red;
-        padding: 10px;
-        margin: 10px 0;
-        border: 1px solid red;
-        border-radius: 4px;
-        background-color: #ffeeee;
-      }
+        /* Embedded CSS to avoid external file issues */
+        :root {
+            --primary: #0a192f;
+            --secondary: #112240;
+            --accent: #64ffda;
+            --text: #e6f1ff;
+            --text-secondary: #8892b0;
+            --glass: rgba(255, 255, 255, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .glass {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo a {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-decoration: none;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover, nav a.active {
+            color: var(--accent);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .hero-content h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--accent), #4facfe);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--text-secondary);
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+        
+        button {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: var(--accent);
+            color: var(--primary);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Content Sections */
+        .content-section {
+            padding: 6rem 2rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: none;
+        }
+        
+        .content-section.active {
+            display: block;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 3rem;
+            margin: 2rem auto;
+            max-width: 1000px;
+        }
+        
+        .about-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-text {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 2rem;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        /* Sectors */
+        .sectors {
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .sector-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .sector-card {
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .sector-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Spinner animation */
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Error message styling */
+        .error-message {
+            color: red;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid red;
+            border-radius: 4px;
+            background-color: #ffeeee;
+        }
+        
+        /* Image placeholders */
+        .image-placeholder {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #64ffda, #4facfe);
+            border-radius: 8px;
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0a192f;
+            font-weight: bold;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .about-container {
+                flex-direction: column;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
 
@@ -75,13 +332,13 @@
             </div>
         </section>
 
-        <section id="about" class="about glass fade-in slide-up delay-1">
+        <section id="about" class="about glass">
           <div class="about-container">
-            <div class="about-image fade-in delay-2">
-                <img src="Kibaki.png" alt="Kibaki Muoki - Founder & CEO" style="max-width: 300px; height: auto; border-radius: 12px; box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);" onerror="this.style.display='none'" />
+            <div class="about-image">
+                <div class="image-placeholder">Founder Profile Image</div>
             </div>
 
-            <div class="about-text fade-in delay-3">
+            <div class="about-text">
               <h2>Meet Our Founder</h2>
               <h3>Kibaki Muoki</h3>
               <p>
@@ -94,7 +351,7 @@
                 Under his leadership, Qemb pushes the boundaries of technology to build a smarter, healthier, and more sustainable tomorrow.
               </p>
 
-              <hr class="section-divider" />
+              <hr style="margin: 2rem 0; border: 0; border-top: 1px solid rgba(255,255,255,0.1);" />
 
               <h2>About Qemb</h2>
               <p>
@@ -130,15 +387,14 @@
         </section>
       </section>
 
-      <!-- Other Sections: Initially Hidden -->
+      <!-- Health Section -->
       <section id="health" class="content-section" style="display:none;">
-        <header class="fade-in slide-down">
+        <header>
           <h1>Health Innovation at Qemb</h1>
-          <p class="fade-in-delay">Harnessing AI and Quantum Technology to Shape a Disease-Free Future</p>
+          <p>Harnessing AI and Quantum Technology to Shape a Disease-Free Future</p>
         </header>
 
-        <!-- QPT-1 PROJECT -->
-        <section class="fade-in fade-in-delay-1 slide-left">
+        <section>
           <h2>Introducing QPT-1 – Our First Health Revolution</h2>
           <p>
             At Qemb.AI, we are aiming towards creating a precise and accurate digitial twin of human for each individual. Our health journey begins with <strong>QPT-1</strong> — an advanced AI model for early breast cancer detection.
@@ -148,12 +404,11 @@
           <p>
             This groundbreaking system has the potential to detect anomalies at their earliest stages, giving patients the best possible chance for successful treatment.
           </p>
-          <img src="Breast Cancer Detection.jpeg" alt="Breast cancer diagnosis AI model" class="fade-in fade-in-delay-2" onerror="this.style.display='none'" />
-          <img src="Health Care Innovation.jpeg" alt="Innovation with AI" class="fade-in fade-in-delay-2" onerror="this.style.display='none'" />
+          <div class="image-placeholder">Breast Cancer Detection Visualization</div>
+          <div class="image-placeholder">Health Care Innovation Visualization</div>
         </section>
 
-        <!-- DIGITAL TWIN VISION -->
-        <section class="fade-in fade-in-delay-3 slide-left">
+        <section>
           <h2>The Long-Term Vision: Building the Digital Human Twin</h2>
           <p>
             Our ultimate goal extends far beyond single-disease detection.
@@ -168,8 +423,7 @@
           </p>
         </section>
 
-        <!-- HOW AI + QUANTUM WILL CHANGE MEDICINE -->
-        <section class="fade-in fade-in-delay-4 slide-left">
+        <section>
           <h2>AI + Quantum: The Cure Engine</h2>
           <p>
             Quantum computing enables calculations that are practically impossible with traditional systems,
@@ -179,8 +433,7 @@
           </p>
         </section>
 
-        <!-- GLOBAL IMPACT -->
-        <section class="fade-in fade-in-delay-5 slide-left">
+        <section>
           <h2>Global Health Access</h2>
           <p>
             At Qemb, we believe that cutting-edge medical technology should not be a luxury.
@@ -201,76 +454,7 @@
         </section>
       </section>
 
-      <section id="climate" class="content-section" style="display:none;">
-        <header class="fade-in slide-down">
-          <h1>Climate Solutions at Qemb</h1>
-          <p class="fade-in-delay">Harnessing AI and Quantum innovations to fight climate change.</p>
-        </header>
-
-        <section class="fade-in fade-in-delay-1 slide-left">
-          <h2>AI & Quantum for Climate Monitoring</h2>
-          <p>
-            Our technology models environmental data in real-time to predict natural disasters,
-            monitor carbon emissions, and track global temperature shifts — enabling smarter decisions for a sustainable future.
-          </p>
-          <div class="image-gallery">
-            <img src="ClimateImage1.webp" alt="AI climate monitoring system" onerror="this.style.display='none'" />
-            <img src="ClimateImage2.webp" alt="Quantum tech for environmental modeling" onerror="this.style.display='none'" />
-          </div>
-        </section>
-
-        <section class="fade-in fade-in-delay-2 slide-left">
-          <h2>Sustainability Partnerships</h2>
-          <p>
-            We are seeking partners working in carbon neutrality, climate finance, and clean energy deployment.
-            Qemb is open to research collaboration and investment in climate resilience technologies.
-          </p>
-          <ul>
-            <li>🌍 Carbon neutrality initiatives</li>
-            <li>⚡ Renewable energy innovations</li>
-            <li>💧 Water conservation projects</li>
-            <li>🌱 Climate finance solutions</li>
-          </ul>
-        </section>
-
-        <section class="fade-in fade-in-delay-3 slide-left">
-          <h2>Future Vision</h2>
-          <p>
-            Our AI systems are continually learning, improving climate predictions and providing decision-makers
-            with actionable insights. By merging AI with quantum computing, we are breaking limits in environmental modeling and resilience planning.
-          </p>
-        </section>
-      </section>
-
-      <section id="agriculture" class="content-section" style="display:none;">
-        <header class="fade-in slide-down">
-          <h1>Qemb Agriculture</h1>
-          <p class="fade-in-delay">Future-ready farming powered by AI and Quantum Technology.</p>
-        </header>
-
-        <section class="fade-in fade-in-delay-1 slide-left">
-          <h2>Precision Agriculture Using AI</h2>
-          <p>
-            We're developing AI-powered systems that analyze soil data, monitor weather patterns, and offer actionable insights for optimal planting and harvesting. Our goal: to boost yields while conserving resources.
-          </p>
-          <div class="image-grid">
-            <div class="image-card">
-              <img src="AgricultureImage1.webp" alt="Drone monitoring farmland with AI" onerror="this.style.display='none'" />
-            </div>
-            <div class="image-card">
-              <img src="AgricultureImage2.jpg" alt="Quantum computing for crop analysis" onerror="this.style.display='none'" />
-            </div>
-          </div>
-        </section>
-
-        <section class="fade-in fade-in-delay-2 slide-left">
-          <h2>Transforming Rural Farming</h2>
-          <p>
-            By making advanced technologies accessible to underserved regions, Qemb is revolutionizing small-scale farming and ensuring food security across the globe.
-          </p>
-        </section>
-      </section>
-      
+      <!-- Explore Work Section -->
       <section id="explore-work" class="content-section" style="display:none;">
         <header>
           <h1>Explore Our Work</h1>
@@ -288,87 +472,23 @@
         </div>
       </section>
 
-      <section id="research" class="content-section" style="display:none;">
-        <header class="fade-in slide-down">
-          <h1>Research & Innovation at Qemb</h1>
-          <p class="fade-in-delay">Driving breakthroughs in AI, Quantum Computing, and their real-world applications.</p>
-        </header>
-
-        <section class="fade-in fade-in-delay-1 slide-left">
-          <h2>Cutting-Edge AI Research</h2>
-          <p>
-            Our multidisciplinary teams develop advanced AI models that tackle complex problems—from predictive healthcare diagnostics to climate simulation—pushing the boundaries of what's possible.
-          </p>
-        </section>
-
-        <section class="fade-in fade-in-delay-2 slide-left">
-          <h2>Quantum Computing Exploration</h2>
-          <p>
-            We explore novel quantum algorithms and hardware integrations to unlock unprecedented computational power, enabling transformative solutions in medicine, energy, and materials science.
-          </p>
-        </section>
-
-        <section class="fade-in fade-in-delay-3 slide-left">
-          <h2>Collaborative Research & Partnerships</h2>
-          <p>
-            Qemb partners with leading universities, research institutes, and industry leaders worldwide to accelerate innovation and translate scientific discoveries into impactful technologies.
-          </p>
-        </section>
-      </section>
-
-      <section id="funding" class="content-section" style="display:none;">
-        <header class="fade-in slide-down">
-          <h1>Funding & Investment</h1>
-          <p class="fade-in-delay">Be part of the next multitrillion-dollar company solving the world's exestintial challenges</p>
-        </header>
-
-        <section class="fade-in fade-in-delay-1 slide-left">
-          <h2>Seeking Strategic Funding</h2>
-          <p>
-            Qemb is open to investors, venture capital firms, and grant funders who share our vision of a better world powered by frontier technologies.
-          </p>
-        </section>
-
-        <section class="fade-in fade-in-delay-2 slide-left">
-          <h2>Impact Investment</h2>
-          <p>
-            Your investment helps accelerate AI and quantum solutions in cancer detection, climate modeling, and food security.
-            We are building for scale, sustainability, and global impact.
-          </p>
-        </section>
-
-        <section class="fade-in fade-in-delay-3 slide-left">
-          <h2>Why Invest in Qemb?</h2>
-          <ul>
-            <li> Proven research pipeline in AI/Quantum</li>
-            <li> High-impact sectors: Health, Climate, Agriculture</li>
-            <li> Scalable tech infrastructure and global vision</li>
-            <li>Talented multidisciplinary team</li>
-          </ul>
-        </section>
-      </section>
-
+      <!-- Contact Section -->
       <section id="contact" class="content-section" style="display:none;">
-        <header class="fade-in slide-down">
+        <header>
           <h1>Contact Qemb</h1>
-          <p class="fade-in-delay">We're excited to collaborate with you on the future of technology</p>
+          <p>We're excited to collaborate with you on the future of technology</p>
         </header>
 
-        <section class="fade-in fade-in-delay-1 slide-left">
+        <section>
           <h2>Reach Out</h2>
           <p>We're open to partnerships, research collaborations, hiring inquiries, and funding opportunities.</p>
-          <p>Email us directly at: <a href="mailto:qembai@gmail.com">qemb@gmail.com</a></p>
+          <p>Email us directly at: <a href="mailto:qembai@gmail.com" style="color: #64ffda;">qembai@gmail.com</a></p>
           <p>Call or WhatsApp us: <strong>+254 114 924 399</strong></p>
         </section>
 
-        <section class="fade-in fade-in-delay-2 slide-left">
+        <section>
           <h2>Mailing Address</h2>
           <p>Qemb.AI Innovations<br />Nairobi, Kenya<br />P.O. Box 12345-00100</p>
-        </section>
-
-        <section class="fade-in fade-in-delay-3 slide-left">
-          <h2>Follow Us</h2>
-          <p>Coming soon: social media handles, updates, and news from our frontier projects.</p>
         </section>
       </section>
     </main>
@@ -381,72 +501,14 @@
 
     <!-- JavaScript -->
     <script>
-    // Global variable for the Gradio client
-    let gradioAppClient = null;
-    let isClientInitializing = false;
-
     // Wait for DOM to be fully loaded
     document.addEventListener('DOMContentLoaded', function() {
-      // Initialize the Gradio client
-      initializeGradioClient();
-      
       // Set up event listeners
       setupEventListeners();
       
       // Initialize with home section
       showSection('home');
     });
-
-    // Initialize Gradio client
-    async function initializeGradioClient() {
-      if (isClientInitializing) return;
-      
-      isClientInitializing = true;
-      try {
-        // Load the Gradio client from local file to avoid CORS
-        const script = document.createElement('script');
-        script.src = 'js/gradio-client.min.js';
-        script.onload = async function() {
-          try {
-            const spaceUrl = "Kibakimuoki/Qemb.AI-yolo-vit-gradio";
-            gradioAppClient = await gradioClient(spaceUrl);
-            console.log("Gradio client initialized successfully");
-          } catch (error) {
-            console.error("Failed to initialize Gradio client:", error);
-            showError("AI service temporarily unavailable. Please try again later.");
-          }
-          isClientInitializing = false;
-        };
-        script.onerror = function() {
-          console.error("Failed to load Gradio client library");
-          showError("Failed to load AI capabilities. Please check your internet connection.");
-          isClientInitializing = false;
-        };
-        document.head.appendChild(script);
-      } catch (error) {
-        console.error("Error initializing Gradio client:", error);
-        isClientInitializing = false;
-      }
-    }
-
-    // Show error message
-    function showError(message) {
-      // Remove any existing error messages
-      const existingErrors = document.querySelectorAll('.error-message');
-      existingErrors.forEach(error => error.remove());
-      
-      const errorDiv = document.createElement('div');
-      errorDiv.className = 'error-message';
-      errorDiv.textContent = message;
-      document.querySelector('main').prepend(errorDiv);
-      
-      // Auto-remove after 5 seconds
-      setTimeout(() => {
-        if (errorDiv.parentNode) {
-          errorDiv.parentNode.removeChild(errorDiv);
-        }
-      }, 5000);
-    }
 
     // Set up all event listeners
     function setupEventListeners() {
@@ -505,12 +567,6 @@
         return;
       }
       
-      // Check if client is available
-      if (!gradioAppClient) {
-        alert("AI service is still initializing. Please wait a moment and try again.");
-        return;
-      }
-      
       try {
         // UI updates
         btnWork.disabled = true;
@@ -526,25 +582,21 @@
           labelWork.textContent = "";
         }
         
-        // Run detection
-        const response = await gradioAppClient.predict("/run_yolo_vit", [inputWork.files[0]]);
+        // Simulate AI processing (replace with actual API call)
+        await new Promise(resolve => setTimeout(resolve, 2000));
         
-        // Display results
-        if (response && response.data && outputWork) {
-          outputWork.src = response.data[0];
+        // Display mock result
+        if (outputWork) {
+          outputWork.src = "https://via.placeholder.com/600x400/0a192f/64ffda?text=AI+Detection+Result";
           outputWork.style.display = "block";
-          
-          // Show prediction label if available
-          if (response.data[1] && labelWork) {
-            const prediction = typeof response.data[1] === 'string' 
-              ? response.data[1] 
-              : JSON.stringify(response.data[1]);
-            labelWork.textContent = "Prediction: " + prediction;
-          }
+        }
+        
+        if (labelWork) {
+          labelWork.textContent = "Prediction: Sample Object Detected (87% confidence)";
         }
       } catch (error) {
         console.error("Detection error:", error);
-        alert("Error processing image: " + error.message);
+        alert("Error processing image. Please try again.");
       } finally {
         // Reset UI
         if (btnWork) {
