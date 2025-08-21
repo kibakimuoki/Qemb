@@ -798,17 +798,22 @@
     const outputData = result.data[0];
 
     // Check if it's an object with base64 data
-    if (typeof outputData === "object" && outputData.data) {
-        outputElement.src = "data:image/png;base64," + outputData.data;
-    } else {
-        outputElement.src = outputData; // fallback if it's already a URL string
-    }
-    
-    outputElement.style.display = "block";
-    labelElement.textContent = result.data[1];
+    const outputData = result.data[0];
+
+if (typeof outputData === "object" && outputData.data) {
+    // base64 string → display in <img>
+    outputElement.src = "data:image/png;base64," + outputData.data;
+} else if (typeof outputData === "string") {
+    // fallback if it's a direct URL
+    outputElement.src = outputData;
 } else {
-    labelElement.textContent = "No detections returned.";
+    console.error("Unexpected output data format:", outputData);
+    labelElement.textContent = "Error: Invalid output data format.";
 }
+
+outputElement.style.display = "block";
+labelElement.textContent = result.data[1] || "No label returned";
+
 
 
     } catch (error) {
