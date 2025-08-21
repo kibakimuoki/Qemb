@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta http-equiv="Content-Security-Policy" 
+      content="script-src 'self' 'unsafe-eval' 'unsafe-inline';">
+
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.png" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -781,7 +784,7 @@
                 labelElement.textContent = "";
                 
                 // Run prediction
-                const response = await client.predict("/run_yolo_vit", [file]);
+                const response = await client.predict("/api/run_yolo_vit", [file]);
                 console.log("Detection response:", response);
                 
                 if (response && response.data) {
