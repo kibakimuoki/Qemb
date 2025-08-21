@@ -796,8 +796,10 @@
                 console.log("Detection response:", result);
                 // Extract outputs
                 const [img_base64, class_name] = result.data;
-                document.getElementById("output_image").src = img_base64;
-                document.getElementById("output_label").innerText = class_name;
+                outputElement.src = img_base64;
+                outputElement.style.display = "block";
+                labelElement.innerText = class_name;
+
                 
                 if (response && response.data) {
                     // Handle different response formats
