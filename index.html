@@ -789,7 +789,7 @@
                 
                 // Run prediction using the standard approach
                 // Gradio client automatically handles the endpoint mapping
-                const response = await client.predict("/predict", [file]);
+                const response = await client.predict("/run_yolo_vit", [file]);
                 console.log("Detection response:", response);
                 
                 if (response && response.data) {
