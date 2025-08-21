@@ -794,67 +794,8 @@
                });
 
                 console.log("Detection response:", result);
-                // Extract outputs
-                const [img_base64, class_name] = result.data;
-                outputElement.src = img_base64;
-                outputElement.style.display = "block";
-                labelElement.innerText = class_name;
-
+                labelElement.textContent = "Error running detection. Please check console for details.";
                 
-                if (response && response.data) {
-                    // Handle different response formats
-                    if (Array.isArray(response.data)) {
-                        // Multiple outputs (image and label)
-                        if (response.data[0]) {
-                            // First output is usually the image
-                            if (typeof response.data[0] === 'string') {
-                                outputElement.src = response.data[0];
-                            } else if (response.data[0].url) {
-                                outputElement.src = response.data[0].url;
-                            } else {
-                                // Try to create URL from data
-                                outputElement.src = URL.createObjectURL(response.data[0]);
-                            }
-                            outputElement.style.display = "block";
-                        }
-                        
-                        if (response.data[1]) {
-                            // Second output is usually the label
-                            const label = response.data[1];
-                            labelElement.textContent = "Prediction: " + 
-                                (typeof label === "string" ? label : JSON.stringify(label));
-                        } else {
-                            labelElement.textContent = "Detection completed successfully!";
-                        }
-                    } else if (typeof response.data === 'string') {
-                        // Single string output (might be image URL)
-                        outputElement.src = response.data;
-                        outputElement.style.display = "block";
-                        labelElement.textContent = "Detection completed successfully!";
-                    } else {
-                        labelElement.textContent = "Unexpected response format from model.";
-                    }
-                } else {
-                    labelElement.textContent = "No output returned from the model.";
-                }
-            } catch (err) {
-                console.error("Prediction error:", err);
-                
-                // Try alternative approaches if the first one fails
-                try {
-                    // Alternative approach: use the client's submit method directly
-                    const result = await client.submit(0, [file]);
-                    console.log("Alternative approach result:", result);
-                    
-                    if (result && result.data) {
-                        outputElement.src = result.data[0];
-                        outputElement.style.display = "block";
-                        labelElement.textContent = "Detection completed successfully!";
-                    }
-                } catch (fallbackError) {
-                    console.error("Fallback also failed:", fallbackError);
-                    labelElement.textContent = "Error running detection. Please check console for details.";
-                }
             } finally {
                 // Hide loading state
                 loadingElement.style.display = "none";
