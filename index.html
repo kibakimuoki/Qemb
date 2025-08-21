@@ -784,24 +784,31 @@
 
         const result = await client.predict("/run_yolo_vit", { img: file });
         console.log("Detection response:", result);
-
         if (isImageOutput) {
-            // YOLO → image output
-            const outputData = result.data[0];
-            if (typeof outputData === "object" && outputData.data) {
-                outputElement.src = "data:image/png;base64," + outputData.data;
-            } else if (typeof outputData === "string") {
-                outputElement.src = outputData;
-            } else {
-                console.error("Unexpected output data format:", outputData);
-                labelElement.textContent = "Error: Invalid output format for image.";
-            }
-            outputElement.style.display = "block";
-            labelElement.textContent = result.data[1] || "";
-        } else {
-            // ViT → text/classification output
-            labelElement.textContent = result.data[0] || "No label returned";
-        }
+    const outputData = result.data[0];
+
+    if (outputData.url) {
+        // Gradio FileData → display URL directly
+        outputElement.src = outputData.url;
+    } else if (typeof outputData === "string") {
+        outputElement.src = outputData;
+    } else if (outputData.data) {
+        // fallback for base64
+        outputElement.src = "data:image/png;base64," + outputData.data;
+    } else {
+        console.error("Unexpected output data format:", outputData);
+        labelElement.textContent = "Error: Invalid output format for image.";
+    }
+
+    outputElement.style.display = "block";
+    labelElement.textContent = result.data[1] || "";
+} else {
+    // ViT classification → text output
+    labelElement.textContent = result.data[0] || "No label returned";
+}
+
+
+      
 
     } catch (error) {
         console.error("Detection error:", error);
