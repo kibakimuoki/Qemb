@@ -856,17 +856,42 @@ async function runDetection(client, file, outputElement, categoryElement, birads
 
 
         // Event listeners for work app
-        btnWork.addEventListener("click", () => {
-            runDetection(
-                workClient,
-                inputWork.files[0],
-                outputWork,
-                document.getElementById("output-label-category"),
-                document.getElementById("output-label-birads"),
-                document.getElementById("roi-results"),
-                loadingWork
-            );
+       btnWork.addEventListener("click", async () => {
+    if (!inputWork.files.length) {
+        alert("Please upload an image first!");
+        return;
+    }
+
+    const file = inputWork.files[0];
+    const blob = new Blob([file], { type: file.type });
+
+    loadingWork.style.display = "block";
+    outputWork.style.display = "none";
+    labelWork.textContent = "";
+
+    try {
+        const result = await workClient.predict("/run_yolo_vit", {  // replace "/predict" with your actual Gradio fn name
+            image: blob
         });
+
+        console.log("Result:", result);
+
+        // Assuming result[0] is image, result[1] is label
+        if (result.data[0]) {
+            outputWork.src = result.data[0].url || URL.createObjectURL(file);
+            outputWork.style.display = "block";
+        }
+        if (result.data[1]) {
+            labelWork.textContent = result.data[1];
+        }
+    } catch (err) {
+        console.error("Prediction error:", err);
+        labelWork.textContent = "❌ Error running detection.";
+    } finally {
+        loadingWork.style.display = "none";
+    }
+});
+
 
         
         // Event listeners for health app
