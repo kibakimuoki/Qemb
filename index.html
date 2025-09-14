@@ -857,13 +857,31 @@ async function runDetection(client, file, outputElement, categoryElement, birads
 
         // Event listeners for work app
         btnWork.addEventListener("click", () => {
-            runDetection(workClient, inputWork.files[0], outputWork, labelWork, loadingWork);
+            runDetection(
+                workClient,
+                inputWork.files[0],
+                outputWork,
+                document.getElementById("output-label-category"),
+                document.getElementById("output-label-birads"),
+                document.getElementById("roi-results"),
+                loadingWork
+            );
         });
+
         
         // Event listeners for health app
-        btnHealth.addEventListener("click", () => {
-            runDetection(healthClient, inputHealth.files[0], outputHealth, labelHealth, loadingHealth);
+       btnWork.addEventListener("click", () => {
+            runDetection(
+                healthClient,
+                inputWork.files[0],
+                outputWork,
+                document.getElementById("output-label-category"),
+                document.getElementById("output-label-birads"),
+                document.getElementById("roi-results"),
+                loadingWork
+            );
         });
+
         
         // Navigation handling
         const navLinks = document.querySelectorAll('.nav-link, .sector-card, .btn-primary, .btn-secondary');
