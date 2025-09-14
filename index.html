@@ -873,12 +873,12 @@ async function runDetection(client, file, outputElement, categoryElement, birads
        btnWork.addEventListener("click", () => {
             runDetection(
                 healthClient,
-                inputWork.files[0],
-                outputWork,
+                inputHealth.files[0],
+                outputHealth,
                 document.getElementById("output-label-category"),
                 document.getElementById("output-label-birads"),
                 document.getElementById("roi-results"),
-                loadingWork
+                loadingHealth
             );
         });
 
