@@ -530,6 +530,22 @@
                     </div>
                     <img id="output-image-health" style="margin-top:15px; max-width:100%; display: none;" />
                     <p id="output-label-health" style="font-weight: bold; margin-top: 10px;"></p>
+                    <!-- New outputs -->
+                    <h4>BI-RADS Prediction</h4>
+                    <pre id="output-birads-health" style="background:#111; padding:10px; border-radius:8px; color:#0ff; display:none;"></pre>
+
+                    <h4>ROI Predictions</h4>
+                    <table id="output-roi-health" style="width:100%; border-collapse: collapse; margin-top:10px; display:none;">
+                      <thead>
+                        <tr style="background:#222; color:#0ff;">
+                          <th>Box</th>
+                          <th>Category</th>
+                          <th>BI-RADS</th>
+                        </tr>
+                    </thead>
+                 <tbody id="output-roi-body-health"></tbody>
+                </table>
+
                 </div>
             </section>
         </section>
@@ -806,18 +822,40 @@
             outputElement.style.display = "block";
 
             // Handle label
-            const labelData = result.data[1];
-            if (labelData) {
-                if (typeof labelData === "string") {
-                    labelElement.textContent = labelData;
-                } else if (labelData.label) {
-                    labelElement.textContent = labelData.label + (labelData.confidence ? ` (${labelData.confidence.toFixed(2)})` : "");
-                } else {
-                    labelElement.textContent = "";
-                }
-            } else {
-                labelElement.textContent = "";
-            }
+            // Global category
+const categoryData = result.data[1];
+if (categoryData) {
+    labelElement.textContent = JSON.stringify(categoryData, null, 2);
+    labelElement.style.whiteSpace = "pre-wrap";
+}
+
+// Global BI-RADS
+const biradsElement = document.getElementById("output-birads-health");
+const biradsData = result.data[2];
+if (biradsData) {
+    biradsElement.textContent = JSON.stringify(biradsData, null, 2);
+    biradsElement.style.display = "block";
+}
+
+// ROI predictions
+const roiTable = result.data[3];
+const roiTableBody = document.getElementById("output-roi-body-health");
+const roiTableContainer = document.getElementById("output-roi-health");
+
+if (roiTable && Array.isArray(roiTable)) {
+    roiTableBody.innerHTML = "";
+    roiTable.forEach(row => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${row["Box"] || ""}</td>
+          <td>${row["Category"] || ""}</td>
+          <td>${row["BI-RADS"] || ""}</td>
+        `;
+        roiTableBody.appendChild(tr);
+    });
+    roiTableContainer.style.display = "table";
+}
+
 
         } else {
             // ViT classification → text output
