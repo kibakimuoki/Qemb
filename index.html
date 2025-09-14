@@ -766,22 +766,25 @@
         const loadingHealth = document.getElementById("loading-text-health");
         
         // Function to run detection
-    async function runDetection(client, file, outputElement, labelElement, loadingElement, isImageOutput = true) {
+async function runDetection(client, file, outputElement, categoryElement, biradsElement, roiTableElement, loadingElement) {
     if (!client) {
         alert("AI service is not available. Please try again later.");
         return;
     }
-    
+
     if (!file) {
         alert("Please upload an image first!");
         return;
     }
-    
+
     try {
         loadingElement.style.display = "block";
         outputElement.style.display = "none";
-        labelElement.textContent = "";
+        categoryElement.textContent = "";
+        biradsElement.textContent = "";
+        roiTableElement.innerHTML = ""; // Clear old results
 
+        // Call backend
         const result = await client.predict("/run_yolo_vit", { img: file });
         console.log("Detection response:", result);
 
@@ -789,59 +792,67 @@
             throw new Error("No data returned from AI service");
         }
 
-        if (isImageOutput) {
-            const outputData = result.data[0];
+        // --- Parse backend outputs ---
+        const [detectedImage, globalCategory, globalBirads, roiRows] = result.data;
 
-            if (outputData && outputData.url) {
-                outputElement.src = outputData.url;
-            } else if (typeof outputData === "string") {
-                outputElement.src = outputData;
-            } else if (outputData && outputData.data) {
-                outputElement.src = "data:image/png;base64," + outputData.data;
-            } else {
-                console.error("Unexpected output data format:", outputData);
-                labelElement.textContent = "Error: Invalid output format for image.";
+        // 1) YOLO detection image
+        if (detectedImage) {
+            if (detectedImage.url) {
+                outputElement.src = detectedImage.url;
+            } else if (typeof detectedImage === "string") {
+                outputElement.src = detectedImage;
+            } else if (detectedImage.data) {
+                outputElement.src = "data:image/png;base64," + detectedImage.data;
             }
-
             outputElement.style.display = "block";
+        }
 
-            // Handle label
-            const labelData = result.data[1];
-            if (labelData) {
-                if (typeof labelData === "string") {
-                    labelElement.textContent = labelData;
-                } else if (labelData.label) {
-                    labelElement.textContent = labelData.label + (labelData.confidence ? ` (${labelData.confidence.toFixed(2)})` : "");
-                } else {
-                    labelElement.textContent = "";
-                }
-            } else {
-                labelElement.textContent = "";
-            }
+        // 2) Global Category
+        if (typeof globalCategory === "string") {
+            categoryElement.textContent = globalCategory;
+        } else if (typeof globalCategory === "object") {
+            // take top prediction
+            const topCat = Object.entries(globalCategory).sort((a,b) => b[1]-a[1])[0];
+            if (topCat) categoryElement.textContent = `${topCat[0]} (${(topCat[1]*100).toFixed(1)}%)`;
+        }
 
-        } else {
-            // ViT classification → text output
-            const classification = result.data[0];
-            if (classification) {
-                if (typeof classification === "string") {
-                    labelElement.textContent = classification;
-                } else if (classification.label) {
-                    labelElement.textContent = classification.label + (classification.confidence ? ` (${classification.confidence.toFixed(2)})` : "");
-                } else {
-                    labelElement.textContent = "No label returned";
-                }
-            } else {
-                labelElement.textContent = "No label returned";
-            }
+        // 3) Global BI-RADS
+        if (typeof globalBirads === "string") {
+            biradsElement.textContent = globalBirads;
+        } else if (typeof globalBirads === "object") {
+            const topBirads = Object.entries(globalBirads).sort((a,b) => b[1]-a[1])[0];
+            if (topBirads) biradsElement.textContent = `${topBirads[0]} (${(topBirads[1]*100).toFixed(1)}%)`;
+        }
+
+        // 4) ROI Table
+        if (Array.isArray(roiRows)) {
+            let tableHTML = `
+                <table class="roi-table">
+                    <thead>
+                        <tr><th>Box</th><th>Category</th><th>BI-RADS</th></tr>
+                    </thead>
+                    <tbody>
+            `;
+            roiRows.forEach(row => {
+                tableHTML += `<tr>
+                    <td>${row["Box"]}</td>
+                    <td>${row["Category"]}</td>
+                    <td>${row["BI-RADS"]}</td>
+                </tr>`;
+            });
+            tableHTML += "</tbody></table>";
+            roiTableElement.innerHTML = tableHTML;
         }
 
     } catch (error) {
         console.error("Detection error:", error);
-        labelElement.textContent = "Error running detection. See console.";
+        categoryElement.textContent = "Error running detection.";
+        biradsElement.textContent = "";
     } finally {
         loadingElement.style.display = "none";
     }
 }
+
 
 
         // Event listeners for work app
