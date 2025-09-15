@@ -862,8 +862,13 @@
 // Global category
 const categoryData = result.data[1];
 if (categoryData) {
-    document.getElementById("output-label-health").textContent = 
-        `Category: ${categoryData}`;
+   if (typeof categoryData === "object") {
+    document.getElementById("output-label-health").textContent =
+        `Category: ${categoryData.label || "N/A"} (Confidence: ${(categoryData.confidence || 0).toFixed(2)})`;
+} else {
+    document.getElementById("output-label-health").textContent = `Category: ${categoryData}`;
+}
+
 }
 
 
@@ -871,7 +876,12 @@ if (categoryData) {
 const biradsData = result.data[2];
 if (biradsData) {
     const biradsElement = document.getElementById("output-birads-health");
+    if (typeof biradsData === "object") {
+    biradsElement.textContent = `BI-RADS: ${biradsData.score || "N/A"}`;
+} else {
     biradsElement.textContent = `BI-RADS: ${biradsData}`;
+}
+
     biradsElement.style.display = "block";
 }
 
@@ -883,21 +893,49 @@ const roiBody = document.getElementById("output-roi-body-health");
 roiBody.innerHTML = "";  // clear previous
 
 const roiData = result.data[3];  // list of detections
+
 if (roiData && roiData.length > 0) {
     roiData.forEach(item => {
         const tr = document.createElement("tr");
+
+        // Safely handle box (could be array of coords or string)
+        const boxValue = Array.isArray(item.box)
+            ? item.box.join(", ")     // e.g. "34, 55, 120, 140"
+            : (item.box ?? "N/A");
+
+        // Safely handle category (could be object with label/confidence or string)
+        let categoryValue = "N/A";
+        if (typeof item.category === "object") {
+            categoryValue = `${item.category.label || "N/A"}${
+                item.category.confidence
+                    ? ` (${(item.category.confidence * 100).toFixed(1)}%)`
+                    : ""
+            }`;
+        } else {
+            categoryValue = item.category ?? "N/A";
+        }
+
+        // Safely handle BI-RADS (could be object with score or string)
+        let biradsValue = "N/A";
+        if (typeof item.birads === "object") {
+            biradsValue = item.birads.score ?? JSON.stringify(item.birads);
+        } else {
+            biradsValue = item.birads ?? "N/A";
+        }
+
         tr.innerHTML = `
-            <td>${item.box}</td>
-            <td>${item.category}</td>
-            <td>${item.birads}</td>
+            <td>${boxValue}</td>
+            <td>${categoryValue}</td>
+            <td>${biradsValue}</td>
         `;
+
         roiBody.appendChild(tr);
     });
     roiTable.style.display = "table";
 } else {
     roiTable.style.display = "none";
 }
-
+      
 
         } else {
             // ViT classification → text output
