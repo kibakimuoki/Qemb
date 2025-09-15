@@ -255,6 +255,23 @@
         .delay-3 { transition-delay: 0.3s; }
         .delay-4 { transition-delay: 0.4s; }
         .delay-5 { transition-delay: 0.5s; }
+
+
+
+
+        #output-roi-health {
+    border: 1px solid #0ff;
+    margin-top: 15px;
+    text-align: center;
+}
+#output-roi-health th, #output-roi-health td {
+    border: 1px solid #333;
+    padding: 8px;
+}
+#output-roi-health tr:nth-child(even) {
+    background-color: #111;
+}
+
         
         /* Footer */
         .footer {
@@ -643,6 +660,25 @@
             </div>
         </section>
 
+
+        
+        <div class="health-output-container">
+    <div class="health-left">
+        <img id="output-image-health" />
+    </div>
+    <div class="health-right">
+        <p id="output-label-health"></p>
+        <h4>BI-RADS Prediction</h4>
+        <p id="output-birads-health"></p>
+        <h4>ROI Predictions</h4>
+        <table id="output-roi-health">
+            <thead>…</thead>
+            <tbody id="output-roi-body-health"></tbody>
+        </table>
+    </div>
+</div>
+
+
         <!-- Research Section -->
         <section id="research" class="content-section" style="display:none;">
             <header class="fade-in slide-down">
@@ -823,19 +859,20 @@
 
             // Handle label
             // Global category
+// Global category
 const categoryData = result.data[1];
 if (categoryData) {
-    labelElement.textContent = JSON.stringify(categoryData, null, 2);
-    labelElement.style.whiteSpace = "pre-wrap";
+    labelElement.textContent = `Category: ${categoryData}`;
 }
 
 // Global BI-RADS
 const biradsElement = document.getElementById("output-birads-health");
 const biradsData = result.data[2];
 if (biradsData) {
-    biradsElement.textContent = JSON.stringify(biradsData, null, 2);
+    biradsElement.textContent = `BI-RADS: ${biradsData}`;
     biradsElement.style.display = "block";
 }
+
 
 // ROI predictions
 const roiTable = result.data[3];
