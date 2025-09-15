@@ -862,35 +862,40 @@
 // Global category
 const categoryData = result.data[1];
 if (categoryData) {
-    labelElement.textContent = `Category: ${categoryData}`;
+    document.getElementById("output-label-health").textContent = 
+        `Category: ${categoryData}`;
 }
 
+
 // Global BI-RADS
-const biradsElement = document.getElementById("output-birads-health");
 const biradsData = result.data[2];
 if (biradsData) {
+    const biradsElement = document.getElementById("output-birads-health");
     biradsElement.textContent = `BI-RADS: ${biradsData}`;
     biradsElement.style.display = "block";
 }
 
 
-// ROI predictions
-const roiTable = result.data[3];
-const roiTableBody = document.getElementById("output-roi-body-health");
-const roiTableContainer = document.getElementById("output-roi-health");
 
-if (roiTable && Array.isArray(roiTable)) {
-    roiTableBody.innerHTML = "";
-    roiTable.forEach(row => {
+// ROI predictions
+const roiTable = document.getElementById("output-roi-health");
+const roiBody = document.getElementById("output-roi-body-health");
+roiBody.innerHTML = "";  // clear previous
+
+const roiData = result.data[3];  // list of detections
+if (roiData && roiData.length > 0) {
+    roiData.forEach(item => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
-          <td>${row["Box"] || ""}</td>
-          <td>${row["Category"] || ""}</td>
-          <td>${row["BI-RADS"] || ""}</td>
+            <td>${item.box}</td>
+            <td>${item.category}</td>
+            <td>${item.birads}</td>
         `;
-        roiTableBody.appendChild(tr);
+        roiBody.appendChild(tr);
     });
-    roiTableContainer.style.display = "table";
+    roiTable.style.display = "table";
+} else {
+    roiTable.style.display = "none";
 }
 
 
