@@ -839,7 +839,10 @@ const roiBodyHealth = document.getElementById("output-roi-body-health");
         
 
         // Function to run detection
-    async function runDetection(client, file, outputElement, labelElement, loadingElement, isImageOutput = true) {
+    async function runDetection(client, file, {
+      outputImage, label, loading, birads, roiTable, roiBody
+    }, isImageOutput = true)
+
     if (!client) {
         alert("AI service is not available. Please try again later.");
         return;
@@ -881,117 +884,75 @@ const roiBodyHealth = document.getElementById("output-roi-body-health");
             // Handle label
             // Global category
 // Global category
+// Category
 const categoryData = result.data[1];
 if (categoryData) {
-   if (typeof categoryData === "object") {
-    document.getElementById("output-label-health").textContent =
-        `Category: ${categoryData.label || "N/A"} (Confidence: ${(categoryData.confidence || 0).toFixed(2)})`;
-} else {
-    document.getElementById("output-label-health").textContent = `Category: ${categoryData}`;
+  if (typeof categoryData === "object") {
+    label.textContent =
+      `Category: ${categoryData.label || "N/A"} (Confidence: ${(categoryData.confidence || 0).toFixed(2)})`;
+  } else {
+    label.textContent = `Category: ${categoryData}`;
+  }
 }
 
-}
-
-
-// Global BI-RADS
+// BI-RADS
 const biradsData = result.data[2];
 if (biradsData) {
-    const biradsElement = document.getElementById("output-birads-health");
-    if (typeof biradsData === "object") {
-    biradsElement.textContent = `BI-RADS: ${biradsData.score || "N/A"}`;
-} else {
-    biradsElement.textContent = `BI-RADS: ${biradsData}`;
+  if (typeof biradsData === "object") {
+    birads.textContent = `BI-RADS: ${biradsData.score || "N/A"}`;
+  } else {
+    birads.textContent = `BI-RADS: ${biradsData}`;
+  }
+  birads.style.display = "block";
 }
-
-    biradsElement.style.display = "block";
-}
-
-
 
 // ROI predictions
-const roiTable = document.getElementById("output-roi-health");
-const roiBody = document.getElementById("output-roi-body-health");
-roiBody.innerHTML = "";  // clear previous
-
-const roiData = result.data[3];  // list of detections
-
+roiBody.innerHTML = "";
+const roiData = result.data[3];
 if (roiData && roiData.length > 0) {
-    roiData.forEach(item => {
-        const tr = document.createElement("tr");
+  roiData.forEach(item => {
+    const tr = document.createElement("tr");
+    const boxValue = Array.isArray(item.box) ? item.box.join(", ") : (item.box ?? "N/A");
+    let categoryValue = typeof item.category === "object"
+      ? `${item.category.label || "N/A"}${item.category.confidence ? ` (${(item.category.confidence * 100).toFixed(1)}%)` : ""}`
+      : (item.category ?? "N/A");
+    let biradsValue = typeof item.birads === "object"
+      ? item.birads.score ?? JSON.stringify(item.birads)
+      : (item.birads ?? "N/A");
 
-        // Safely handle box (could be array of coords or string)
-        const boxValue = Array.isArray(item.box)
-            ? item.box.join(", ")     // e.g. "34, 55, 120, 140"
-            : (item.box ?? "N/A");
-
-        // Safely handle category (could be object with label/confidence or string)
-        let categoryValue = "N/A";
-        if (typeof item.category === "object") {
-            categoryValue = `${item.category.label || "N/A"}${
-                item.category.confidence
-                    ? ` (${(item.category.confidence * 100).toFixed(1)}%)`
-                    : ""
-            }`;
-        } else {
-            categoryValue = item.category ?? "N/A";
-        }
-
-        // Safely handle BI-RADS (could be object with score or string)
-        let biradsValue = "N/A";
-        if (typeof item.birads === "object") {
-            biradsValue = item.birads.score ?? JSON.stringify(item.birads);
-        } else {
-            biradsValue = item.birads ?? "N/A";
-        }
-
-        tr.innerHTML = `
-            <td>${boxValue}</td>
-            <td>${categoryValue}</td>
-            <td>${biradsValue}</td>
-        `;
-
-        roiBody.appendChild(tr);
-    });
-    roiTable.style.display = "table";
+    tr.innerHTML = `<td>${boxValue}</td><td>${categoryValue}</td><td>${biradsValue}</td>`;
+    roiBody.appendChild(tr);
+  });
+  roiTable.style.display = "table";
 } else {
-    roiTable.style.display = "none";
+  roiTable.style.display = "none";
 }
-      
-
-        } else {
-            // ViT classification → text output
-            const classification = result.data[0];
-            if (classification) {
-                if (typeof classification === "string") {
-                    labelElement.textContent = classification;
-                } else if (classification.label) {
-                    labelElement.textContent = classification.label + (classification.confidence ? ` (${classification.confidence.toFixed(2)})` : "");
-                } else {
-                    labelElement.textContent = "No label returned";
-                }
-            } else {
-                labelElement.textContent = "No label returned";
-            }
-        }
-
-    } catch (error) {
-        console.error("Detection error:", error);
-        labelElement.textContent = "Error running detection. See console.";
-    } finally {
-        loadingElement.style.display = "none";
-    }
-}
-
 
         // Event listeners for work app
-        btnWork.addEventListener("click", () => {
-          runDetection(workClient, inputWork.files[0], outputWork, labelWork, loadingWork);
-        });
+       btnWork.addEventListener("click", () => {
+  runDetection(workClient, inputWork.files[0], {
+    outputImage: outputWork,
+    label: labelWork,
+    loading: loadingWork,
+    birads: biradsWork,
+    roiTable: roiTableWork,
+    roiBody: roiBodyWork
+  });
+});
+
         
         // Event listeners for health app
-        btnHealth.addEventListener("click", () => {
-            runDetection(healthClient, inputHealth.files[0], outputHealth, labelHealth, loadingHealth);
-        });
+       btnHealth.addEventListener("click", () => {
+  runDetection(healthClient, inputHealth.files[0], {
+    outputImage: outputHealth,
+    label: labelHealth,
+    loading: loadingHealth,
+    birads: biradsHealth,
+    roiTable: roiTableHealth,
+    roiBody: roiBodyHealth
+  });
+});
+
         
         // Navigation handling
         const navLinks = document.querySelectorAll('.nav-link, .sector-card, .btn-primary, .btn-secondary');
