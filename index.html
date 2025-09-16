@@ -134,14 +134,23 @@
             background: rgba(0, 255, 255, 0.1);
             transform: translateY(-2px);
         }
-        
+
+
         /* Content sections */
         .content-section {
             padding: 6rem 2rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
             min-height: 100vh;
+            display: none;  /* hidden by default */
         }
+
+        .content-section.active {
+            display: block; /* only active section shows */
+        }
+
+       
+
         
         /* Glass effect */
         .glass {
@@ -480,7 +489,7 @@
         </section>
 
         <!-- Health Section -->
-        <section id="health" class="content-section" style="display:none;">
+        <section id="health" class="content-section">
             <header class="fade-in slide-down">
                 <h1>Health Innovation at Qemb</h1>
                 <p class="fade-in-delay">Harnessing AI and Quantum Technology to Shape a Disease-Free Future</p>
@@ -568,7 +577,7 @@
         </section>
 
         <!-- Climate Section -->
-        <section id="climate" class="content-section" style="display:none;">
+        <section id="climate" class="content-section">
             <header class="fade-in slide-down">
                 <h1>Climate Solutions at Qemb</h1>
                 <p class="fade-in-delay">Harnessing AI and Quantum innovations to fight climate change.</p>
@@ -610,7 +619,7 @@
         </section>
 
         <!-- Agriculture Section -->
-        <section id="agriculture" class="content-section" style="display:none;">
+        <section id="agriculture" class="content-section">
             <header class="fade-in slide-down">
                 <h1>Qemb Agriculture</h1>
                 <p class="fade-in-delay">Future-ready farming powered by AI and Quantum Technology.</p>
@@ -640,7 +649,7 @@
         </section>
 
         <!-- Explore Work Section -->
-        <section id="explore-work" class="content-section" style="display:none;">
+        <section id="explore-work" class="content-section">
             <header>
                 <h1>Explore Our Work</h1>
                 <p>Experience the cutting-edge AI technology powering Qemb.AI</p>
@@ -683,7 +692,7 @@
 
 
         <!-- Research Section -->
-        <section id="research" class="content-section" style="display:none;">
+        <section id="research" class="content-section">
             <header class="fade-in slide-down">
                 <h1>Research & Innovation at Qemb</h1>
                 <p class="fade-in-delay">Driving breakthroughs in AI, Quantum Computing, and their real-world applications.</p>
@@ -712,7 +721,7 @@
         </section>
 
         <!-- Funding Section -->
-        <section id="funding" class="content-section" style="display:none;">
+        <section id="funding" class="content-section">
             <header class="fade-in slide-down">
                 <h1>Funding & Investment</h1>
                 <p class="fade-in-delay">Be part of the next multitrillion-dollar company solving the world's exestintial challenges</p>
@@ -745,7 +754,7 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="content-section" style="display:none;">
+        <section id="contact" class="content-section">
             <header class="fade-in slide-down">
                 <h1>Contact Qemb</h1>
                 <p class="fade-in-delay">We're excited to collaborate with you on the future of technology</p>
