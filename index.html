@@ -839,93 +839,101 @@ const roiBodyHealth = document.getElementById("output-roi-body-health");
         
 
         // Function to run detection
-    async function runDetection(client, file, {
-      outputImage, label, loading, birads, roiTable, roiBody
-    }, isImageOutput = true)
-
-    if (!client) {
-        alert("AI service is not available. Please try again later.");
-        return;
-    }
-    
-    if (!file) {
-        alert("Please upload an image first!");
-        return;
-    }
-    
-    try {
-        loadingElement.style.display = "block";
-        outputElement.style.display = "none";
-        labelElement.textContent = "";
-
-        const result = await client.predict("/run_yolo_vit", { img: file });
-        console.log("Detection response:", result);
-
-        if (!result || !result.data) {
-            throw new Error("No data returned from AI service");
-        }
-
-        if (isImageOutput) {
-            const outputData = result.data[0];
-
-            if (outputData && outputData.url) {
-                outputElement.src = outputData.url;
-            } else if (typeof outputData === "string") {
-                outputElement.src = outputData;
-            } else if (outputData && outputData.data) {
-                outputElement.src = "data:image/png;base64," + outputData.data;
-            } else {
-                console.error("Unexpected output data format:", outputData);
-                labelElement.textContent = "Error: Invalid output format for image.";
-            }
-
-            outputElement.style.display = "block";
-
-            // Handle label
-            // Global category
-// Global category
-// Category
-const categoryData = result.data[1];
-if (categoryData) {
-  if (typeof categoryData === "object") {
-    label.textContent =
-      `Category: ${categoryData.label || "N/A"} (Confidence: ${(categoryData.confidence || 0).toFixed(2)})`;
-  } else {
-    label.textContent = `Category: ${categoryData}`;
+    // Function to run detection
+async function runDetection(client, file, {
+  outputImage, label, loading, birads, roiTable, roiBody
+}, isImageOutput = true) {
+  if (!client) {
+    alert("AI service is not available. Please try again later.");
+    return;
   }
-}
 
-// BI-RADS
-const biradsData = result.data[2];
-if (biradsData) {
-  if (typeof biradsData === "object") {
-    birads.textContent = `BI-RADS: ${biradsData.score || "N/A"}`;
-  } else {
-    birads.textContent = `BI-RADS: ${biradsData}`;
+  if (!file) {
+    alert("Please upload an image first!");
+    return;
   }
-  birads.style.display = "block";
-}
 
-// ROI predictions
-roiBody.innerHTML = "";
-const roiData = result.data[3];
-if (roiData && roiData.length > 0) {
-  roiData.forEach(item => {
-    const tr = document.createElement("tr");
-    const boxValue = Array.isArray(item.box) ? item.box.join(", ") : (item.box ?? "N/A");
-    let categoryValue = typeof item.category === "object"
-      ? `${item.category.label || "N/A"}${item.category.confidence ? ` (${(item.category.confidence * 100).toFixed(1)}%)` : ""}`
-      : (item.category ?? "N/A");
-    let biradsValue = typeof item.birads === "object"
-      ? item.birads.score ?? JSON.stringify(item.birads)
-      : (item.birads ?? "N/A");
+  try {
+    // Show loading
+    loading.style.display = "block";
+    outputImage.style.display = "none";
+    label.textContent = "";
 
-    tr.innerHTML = `<td>${boxValue}</td><td>${categoryValue}</td><td>${biradsValue}</td>`;
-    roiBody.appendChild(tr);
-  });
-  roiTable.style.display = "table";
-} else {
-  roiTable.style.display = "none";
+    // Call Gradio endpoint
+    const result = await client.predict("/run_yolo_vit", { img: file });
+    console.log("Detection response:", result);
+
+    if (!result || !result.data) {
+      throw new Error("No data returned from AI service");
+    }
+
+    // === IMAGE OUTPUT ===
+    if (isImageOutput) {
+      const outputData = result.data[0];
+
+      if (outputData && outputData.url) {
+        outputImage.src = outputData.url;
+      } else if (typeof outputData === "string") {
+        outputImage.src = outputData;
+      } else if (outputData && outputData.data) {
+        outputImage.src = "data:image/png;base64," + outputData.data;
+      } else {
+        console.error("Unexpected output data format:", outputData);
+        label.textContent = "Error: Invalid output format for image.";
+      }
+
+      outputImage.style.display = "block";
+    }
+
+    // === CATEGORY ===
+    const categoryData = result.data[1];
+    if (categoryData) {
+      if (typeof categoryData === "object") {
+        label.textContent =
+          `Category: ${categoryData.label || "N/A"} (Confidence: ${(categoryData.confidence || 0).toFixed(2)})`;
+      } else {
+        label.textContent = `Category: ${categoryData}`;
+      }
+    }
+
+    // === BI-RADS ===
+    const biradsData = result.data[2];
+    if (biradsData) {
+      if (typeof biradsData === "object") {
+        birads.textContent = `BI-RADS: ${biradsData.score || "N/A"}`;
+      } else {
+        birads.textContent = `BI-RADS: ${biradsData}`;
+      }
+      birads.style.display = "block";
+    }
+
+    // === ROI TABLE ===
+    roiBody.innerHTML = "";
+    const roiData = result.data[3];
+    if (roiData && roiData.length > 0) {
+      roiData.forEach(item => {
+        const tr = document.createElement("tr");
+        const boxValue = Array.isArray(item.box) ? item.box.join(", ") : (item.box ?? "N/A");
+        let categoryValue = typeof item.category === "object"
+          ? `${item.category.label || "N/A"}${item.category.confidence ? ` (${(item.category.confidence * 100).toFixed(1)}%)` : ""}`
+          : (item.category ?? "N/A");
+        let biradsValue = typeof item.birads === "object"
+          ? item.birads.score ?? JSON.stringify(item.birads)
+          : (item.birads ?? "N/A");
+
+        tr.innerHTML = `<td>${boxValue}</td><td>${categoryValue}</td><td>${biradsValue}</td>`;
+        roiBody.appendChild(tr);
+      });
+      roiTable.style.display = "table";
+    } else {
+      roiTable.style.display = "none";
+    }
+  } catch (err) {
+    console.error("Detection failed:", err);
+    label.textContent = "Error: " + err.message;
+  } finally {
+    loading.style.display = "none";
+  }
 }
 
         // Event listeners for work app
