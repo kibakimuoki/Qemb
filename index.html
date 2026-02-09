@@ -83,6 +83,13 @@
             background-position: center;
             padding: 0 1rem;
         }
+
+        #bio-canvas {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        }
         
         .hero-content h1 {
             font-family: 'Orbitron', sans-serif;
@@ -423,6 +430,9 @@
         <!-- Home Section -->
         <section id="home" class="content-section active">
             <section class="hero">
+                <!-- BIO ORGANISM BACKGROUND -->
+                <div id="bio-canvas"></div>
+
                 <div class="hero-content">
                     <h1 class="typewriter">Shaping Tomorrow with AI & Quantum Technology</h1>
                     <p>Innovating across AI and Quantum Technologies</p>
@@ -800,7 +810,11 @@
         <p>&copy; 2025 Qemb. All Rights Reserved.</p>
         <p>Innovating for Health, Climate, Agriculture, and Beyond.</p>
     </footer>
+   
+    
+    
     <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
     <script type="module">
         // Import Gradio client
         import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client@latest/dist/index.min.js";
@@ -1029,6 +1043,102 @@ async function runDetection(client, file, {
         
         // Animation on scroll
         window.addEventListener('scroll', animateOnScroll);
+        
+
+        // ================================
+// BIO ORGANISM BACKGROUND
+// ================================
+const container = document.getElementById("bio-canvas");
+
+if (container && window.THREE) {
+  const scene = new THREE.Scene();
+
+  const camera = new THREE.PerspectiveCamera(
+    45,
+    container.clientWidth / container.clientHeight,
+    0.1,
+    100
+  );
+  camera.position.z = 3;
+
+  const renderer = new THREE.WebGLRenderer({
+    alpha: true,
+    antialias: true
+  });
+
+  renderer.setSize(container.clientWidth, container.clientHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  container.appendChild(renderer.domElement);
+
+  const geometry = new THREE.SphereGeometry(1, 128, 128);
+
+  const material = new THREE.ShaderMaterial({
+    uniforms: {
+      time: { value: 0 }
+    },
+    vertexShader: `
+      uniform float time;
+      varying vec2 vUv;
+
+      void main() {
+        vUv = uv;
+        vec3 pos = position;
+
+        float noise = sin(pos.y * 4.0 + time)
+                    * cos(pos.x * 4.0 + time)
+                    * 0.15;
+
+        pos += normal * noise;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+      }
+    `,
+    fragmentShader: `
+      varying vec2 vUv;
+
+      void main() {
+        vec3 color1 = vec3(0.1, 0.9, 1.0);
+        vec3 color2 = vec3(0.8, 0.2, 1.0);
+        vec3 color = mix(color1, color2, vUv.y);
+        gl_FragColor = vec4(color, 0.85);
+      }
+    `,
+    transparent: true
+  });
+
+  const blob = new THREE.Mesh(geometry, material);
+  scene.add(blob);
+
+  const points = new THREE.Points(
+    geometry,
+    new THREE.PointsMaterial({
+      size: 0.01,
+      color: 0x44ffff,
+      transparent: true,
+      opacity: 0.6
+    })
+  );
+  scene.add(points);
+
+  function animate(t) {
+    material.uniforms.time.value = t * 0.001;
+    blob.rotation.y += 0.002;
+    blob.rotation.x += 0.001;
+    points.rotation.y -= 0.001;
+
+    renderer.render(scene, camera);
+    requestAnimationFrame(animate);
+  }
+  animate();
+
+  window.addEventListener("resize", () => {
+    const w = container.clientWidth;
+    const h = container.clientHeight;
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+    renderer.setSize(w, h);
+  });
+}
+
     </script>
   
 </body>
