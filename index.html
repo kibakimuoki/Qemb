@@ -92,10 +92,17 @@
         }
         
         .hero-content h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
+        font-family: 'Orbitron', sans-serif;
+        font-size: clamp(2rem, 5vw, 3.5rem); /* scales with screen width */
+        margin-bottom: 1rem;
+        max-width: 100%;                   /* never exceed container */
+        white-space: normal;               /* allow wrapping */
+        word-wrap: break-word;             /* break long words if needed */
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
         }
+
         
         .hero-content p {
             font-size: 1.2rem;
@@ -160,14 +167,19 @@
 
         
         /* Glass effect */
-        .glass {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 2rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        .sector-card {
+        color: #fff; /* ensures text is visible */
+        font-weight: 600;
+        font-size: 1.2rem;
+        transition: transform 0.3s, background 0.3s;
         }
+
+        .sector-card:hover {
+        background: rgba(255, 255, 255, 0.2); /* slightly brighter hover */
+        transform: translateY(-5px);
+        }
+
+
         
         /* About section */
         .about-container {
